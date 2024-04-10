@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        function rand(min,max) {
+            return parseInt(Math.random() * (max - min)) + min
+        }
+
+        var smallArr = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"];
+        var bigArr = ["A", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"];
+        var numArr = [];
+        for (var i = 0; i < 10; i++) {
+            numArr.push(i + '');
+        }
+
+        // 拼接所有数组
+        var allArr = smallArr.concat(bigArr, numArr);
+
+        console.log(allArr);
+
+
+
+        function code(n) {
+            n = n || 5;
+
+            var codeArr = [];
+            for (var i = 0; i < n; i++) {
+                codeArr.push(allArr[rand(0, allArr.length)]);
+            }
+
+            console.log(codeArr);   // 数组
+
+            // 小写   大写   数字   
+            var flag = 0 ;
+            for(var i = 0 ; i < codeArr.length ; i++) {
+                // 判断小写  
+                if(smallArr.includes(codeArr[i])) {
+                    flag++ ;
+                    break ;  // 必须的   小写可能不止一个
+                }
+            }
+
+            for(var i = 0 ; i < codeArr.length ; i++) {
+                // 判断大写  
+                if(bigArr.includes(codeArr[i])) {
+                    flag++ ;
+                    break ;
+                }
+            }
+
+
+            for(var i = 0 ; i < codeArr.length ; i++) {
+                // 判断小数字 
+                if(numArr.includes(codeArr[i])) {
+                    flag++ ;
+                    break ;
+                }
+            }
+
+
+
+            if(flag === 3) {
+                return codeArr.join('') ;
+            }
+            return code(n) ;
+        }
+
+
+        console.log(code(5));
+
+
+    </script>
+
+</body>
+
+</html>

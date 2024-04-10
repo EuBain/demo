@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        // 6 和 9 
+
+        // 6%9 = 6
+        // 9%6 = 3
+        // 6%3 = 0
+
+        // 3就是最大公约数
+
+
+
+
+        // 15和9
+        // 15%9=6
+        // 9%6=3
+        // 6%3=0
+
+
+        // a和b
+        // a%b=c
+        // b%c     b当做了第一个数，把c当做了第二个数
+        // 
+
+        function gcd(a,b) {
+
+            if(a % b === 0) {
+                return b
+            }
+            return gcd(b , a%b)
+        }
+
+
+        console.log(gcd(10,18));
+
+        // gcd(10,18)
+
+        // gcd(18,10)   // 8
+
+        // gcd(10,8)   // 2
+
+        // gcd(8,2)   // 0
+
+        // 2
+
+
+
+
+    </script>
+    
+</body>
+</html>

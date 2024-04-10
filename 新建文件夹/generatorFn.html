@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function * a() {
+        //     yield 'aa'
+        //    return yield
+        //     yield 'bb'
+        //    console.log(yield) 
+             yield
+             yield
+            return yield
+        }
+
+        const aFn = a();
+        console.log( aFn.next('xx'))
+        console.log( aFn.next('dd'))
+        console.log( aFn.next('ee'))
+        console.log( aFn.next('ff'))
+        for (let A of aFn ){
+            console.log(A);
+        }
+
+    </script>
+</body>
+</html>

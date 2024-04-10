@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        年<input type="text" id="n" placeholder="请输入四位数年份">
+        <br>
+        月<input type="text" id="y" placeholder="1-12月">
+        <br>
+        日<input type="text" id="r">
+        <button id="bt">确认</button>
+        当年第几天<input type="text" id="ts">
+        <script>
+            // 获取对象
+            var on = document.getElementById("n")
+            var oy = document.getElementById("y")
+            var or = document.getElementById("r")
+            var obt = document.getElementById("bt")
+            var ots = document.getElementById("ts")
+            // 绑定事件
+            obt.onclick = function () {
+                // 获取值
+                var nian = on.value;
+                var yue = oy.value;
+                var ri = or.value;
+                // 加入判断每月天数
+                if (yue == 1 || yue == 3 || yue == 5 || yue == 7 || yue == 8 || yue == 10 || yue == 12) {
+                    day = 31;
+                }
+                else if (yue == 4 || yue == 6 || yue == 9 || yue == 11) {
+                    day = 30;
+                }
+                else {
+                    // 判断平年闰年确定2月天数
+                    if (nian % 4 === 0 && nian % 100 != 0 || nian % 400 === 0) {
+                        day = 29;
+                    }
+                    else {
+                        day = 28; 
+                    }
+                }
+                // 判断时间是否符合要求
+                if (
+                    nian >= 1000 && nian < 10000 && nian % 1 === 0 && yue >= 1 && yue <= 12 && yue % 1 === 0 && ri >= 1 && ri <= day && ri % 1 === 0
+                ) {
+                    alert("日期输入符合要求")
+                }
+                else {
+                    alert("输入日期不符合要求")
+                }
+                var eryue;
+                // 判断平年闰年确定2月天数
+                if (nian % 4 === 0 && nian % 100 != 0 || nian % 400 === 0) {
+                    eryue = 29;
+                }
+                else {
+                    eryue = 28;
+                }
+                // if (yue == 1) {
+                //     ots.value = ri;
+                // }
+                // else if (yue == 2) {
+                //     ots.value = 31 + ri / 1;
+                // }
+                // else if (yue == 3) {
+                //     ots.value = 31 + eryue / 1 + ri / 1;
+                // }
+                // else if (yue == 4) {
+                //     ots.value = 31 + eryue / 1 + 31 + ri / 1;
+                // }
+                // else if (yue == 5) {
+                //     ots.value = 31 + eryue / 1 + 31 + 30 + ri / 1;
+                // }
+                // else if (yue == 6) {
+                //     ots.value = 31 + eryue / 1 + 31 + 30 + 31 + ri / 1;
+                // }
+                // else if (yue == 7) {
+                //     ots.value = 31 + eryue / 1 + 31 + 30 + 31 + 30 + ri / 1;
+                // }
+                // else if (yue == 8) {
+                //     ots.value = 31 + eryue / 1 + 31 + 30 + 31 + 30 + 31 + ri / 1;
+                // }
+                // else if (yue == 9) {
+                //     ots.value = 31 + eryue / 1 + 31 + 30 + 31 + 30 + 31 + 31 + ri / 1;
+                // }
+                // else if (yue == 10) {
+                //     ots.value = 31 + eryue / 1 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + ri / 1;
+                // }
+                // else if (yue == 11) {
+                //     ots.value = 31 + eryue / 1 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + ri / 1;
+                // }
+                // else if (yue == 12) {
+                //     ots.value = 31 + eryue / 1 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30 + ri / 1;
+                // }
+                var he = 0;
+                switch (yue) {
+                    case "12": he += 30
+                    case "11": he += 31
+                    case "10": he += 30
+                    case "9": he += 31
+                    case "8": he += 31
+                    case "7": he += 30
+                    case "6": he += 31
+                    case "5": he += 30
+                    case "4": he += 31
+                    case "3": he += eryue
+                    case "2": he += 31
+                    case "1": he += ri / 1
+                }
+                ots.value = he;
+                console.log(typeof or)
+            }
+            // 从if里面抓取某一个判断流程里面给出结果，前提是要满足这个判断流程
+            // 从input输入框中获取的value是字符串
+            // var 出来的变量需要赋值，不赋值进入赋值运算结果就是NaN
+            // switch()内的变量内容要与case 后的值全等。
+        </script>
+    </div>
+</body>
+
+</html>

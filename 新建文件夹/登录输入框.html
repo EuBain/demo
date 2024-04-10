@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        form{
+            width: 50%;
+            height: 200px;
+            border: 1px solid gray;
+            display:flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-around;
+
+            position: fixed;
+            top: 25%;
+            left: 25%;
+            text-align: center;
+        }
+        
+
+    </style>
+
+</head>
+
+<body>
+    <form  action="http://www.baidu.com" onsubmit="return ojk.onclick">
+        <div>
+            <label for="">请输入账户</label>
+            <input type="text" name="" id="user">
+            <span id="userSpan">请输入6-12位字母，数字组成的账户，不能以数字开头</span>
+        </div>
+        <div>
+            <label for="">请输入密码</label>
+            <input type="password" name="" id="pass">
+            <span id="passSpan">请输入6-12位字母，数字组成的密码</span>
+        </div>
+        <div>
+            <label for="">请确认你的密码</label>
+            <input type="password" name="" id="repass">
+            <span id="repassSpan">请输入相同的密码</span>
+        </div>
+        <div>
+            <input type="text" name="" id="code" placeholder="请输入你的验证码">
+            <input type="text" name="" id="iCode" disabled>
+            <button id="recode">刷新</button>
+            <span id="codeSpan">验证码不区分大小写</span>
+        </div>
+        <div>
+            <button id="tj">提交</button>
+        </div>
+    </form>
+
+    <script>
+        // 获取元素
+        // 账号
+        var ouser = document.getElementById('user');
+        var ouserSpan = document.getElementById('userSpan');
+
+        //密码
+        var opass = document.getElementById('pass');
+        var opassSpan = document.getElementById('passSpan');
+
+        //确认密码
+        var orepass = document.getElementById('repass');
+        var orepassSpan = document.getElementById('repassSpan')
+
+        //验证码
+        var ocode = document.getElementById('code');
+        var oiCode = document.getElementById('iCode');
+        var orecode = document.getElementById('recode');
+        var ocodeSpan = document.getElementById('codeSpan')
+
+        //提交
+        var otj = document.getElementById('tj');
+
+        // 获取验证码数组
+        //小写字母
+        var smallArr = [];
+        for (var i = 97; i >= 97 && i <= 122; i++) {
+            smallArr.push(String.fromCharCode(i));
+        }
+        // console.log(smallArr);
+
+        //大写字母
+        var bigArr = [];
+        for (var i = 65; i >= 65 && i <= 90; i++) {
+            bigArr.push(String.fromCharCode(i));
+        }
+        // console.log(bigArr);
+
+        //数组
+        var num = [];
+        for (var i = 0; i <= 9; i++) {
+            num.push('' + i);
+        }
+        // console.log(num);
+
+        //全部字符
+        var allArr = smallArr.concat(bigArr, num);
+        // console.log(allArr);
+        //验证码点开网页出现
+        oiCode.value = codeVal(4);
+        // 刷新验证码
+        orecode.onclick = function () {
+            oiCode.value = codeVal(4);
+            return false
+        }
+        // 点击事件
+        otj.onclick = function () {
+            // 账号栏
+            // 去除首尾空格符
+            var name = ouser.value.trim();
+            // 判断输入内容不能为空
+            if (name === '') {
+                ouserSpan.innerHTML = '输入内容不能为空'
+                ouserSpan.style.color = 'red'
+                return false;
+            }
+            //判断账号首位不是数字
+            if (num.includes(name[0])) {
+                ouserSpan.innerHTML = '账号首位不能为数字'
+                ouserSpan.style.color = 'red'
+                return false;
+            }
+            //判断输入位数
+            if (name.length < 6 || name.length > 12) {
+                ouserSpan.innerHTML = '请输入6-12位字母，数字组成的账户'
+                ouserSpan.style.color = 'red'
+                return false;
+            }
+            // 判断输入是否满足要求
+            for (var i = 0; i < name.length; i++) {
+                if (allArr.includes(name[i])) {
+                    ouserSpan.innerHTML = '√';
+                    ouserSpan.style.color = 'green';
+                } else {
+                    ouserSpan.innerHTML = '请输入正确的账号';
+                    ouserSpan.style.color = 'red';
+                    return false;
+                }
+            }
+
+            // 密码栏
+
+            var password = opass.value.trim();
+            // 判断输入内容不能为空
+            if (password === '') {
+                opassSpan.innerHTML = '输入内容不能为空'
+                opassSpan.style.color = 'red'
+                return false;
+            }
+            //判断输入位数
+            if (password.length < 6 || password.length > 12) {
+                opassSpan.innerHTML = '请输入6-12位字母，数字组成的账户'
+                opassSpan.style.color = 'red'
+                return false;
+            }
+            // 判断输入是否满足要求
+            for (var i = 0; i < password.length; i++) {
+                if (!allArr.includes(password[i])) {
+                    opassSpan.innerHTML = '请输入正确的账号';
+                    opassSpan.style.color = 'red';
+                    return false;
+                }
+            }
+            // 校验密码强度
+            var j = 0;
+            for (var i = 0; i < password.length; i++) {
+                if (smallArr.includes(password[i])) {
+                    j++;
+                    break;
+                }
+            }
+            for (var i = 0; i < password.length; i++) {
+                if (bigArr.includes(password[i])) {
+                    j++;
+                    break;
+                }
+            }
+            for (var i = 0; i < password.length; i++) {
+                if (num.includes(password[i])) {
+                    j++;
+                    break;
+                }
+            }
+            if (j === 3) {
+                opassSpan.innerHTML = '强'
+                opassSpan.style.color = 'green'
+            }
+            else if (j === 2) {
+                opassSpan.innerHTML = '中'
+                opassSpan.style.color = 'yellow'
+            }
+            else if (j === 1) {
+                opassSpan.innerHTML = '弱'
+                opassSpan.style.color = 'red'
+            }
+
+            // 确认密码
+            var verify = orepass.value.trim();
+            if (verify != password) {
+                orepassSpan.innerHTML = '两次输入密码不一致'
+                orepassSpan.style.color = 'red'
+                return false;
+            } else {
+                orepassSpan.innerHTML = '√'
+                orepassSpan.style.color = 'green'
+
+            }
+
+
+            //验证码
+            var a = ocode.value.toLowerCase();
+            var b = oiCode.value.toLowerCase();
+            if (a === b) {
+                ocodeSpan.innerHTML = '验证成功'
+                ocodeSpan.style.color = 'green'
+                // otj.innerHTML = '<a href = "http://www.baidu.com"></a>'
+            }
+            else {
+                ocodeSpan.innerHTML = '验证失败'
+                ocodeSpan.style.color = 'red'
+                oiCode.value = codeVal(4)
+                return false ;
+            }
+
+        }
+
+        //验证码函数
+        function codeVal(n) {
+            var code = []
+            for (i = 0; i < n; i++) {
+                code.push(allArr[parseInt(Math.random() * allArr.length)]);
+            }
+            var j = 0;
+            for (var i = 0; i < n; i++) {
+                if (smallArr.includes(code[i])) {
+                    j++;
+                    break;
+                }
+            }
+            for (var i = 0; i < n; i++) {
+                if (bigArr.includes(code[i])) {
+                    j++;
+                    break;
+                }
+            }
+            for (var i = 0; i < n; i++) {
+                if (num.includes(code[i])) {
+                    j++;
+                    break;
+                }
+            }
+            //  console.log(code);
+            if (j === 3) {
+                return code.join('');
+            } else {
+                return codeVal(n);
+            }
+        }
+
+        // console.log(codeVal(4));
+
+    </script>
+</body>
+
+</html>

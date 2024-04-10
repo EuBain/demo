@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <input type="text" id="num1">
+        <select id="sel">
+            <option value="1">+</option>
+            <option value="2">-</option>
+            <option value="3">*</option>
+            <option value="4">/</option>
+        </select>
+        <input type="text" id="num2">
+        <button id="bu">=</button>
+        <input type="text" id="jg">
+    </div>
+    <script>
+        var onum1 = document.getElementById("num1")
+        var osel = document.getElementById("sel")
+        var onum2 = document.getElementById("num2")
+        var obu = document.getElementById("bu")
+        var ojg = document.getElementById("jg")
+        obu.onclick = function () {
+            if (isNaN(onum1.value) || isNaN(onum2.value)) {
+                alert('请输入数字')
+            }
+            else {
+                if (osel.value === '1') {
+                    ojg.value = (onum1.value - 0) + (onum2.value - 0);
+                }
+                else if (osel.value ==='2') {
+                    ojg.value = onum1.value - onum2.value;
+                }
+                else if (osel.value === "3") {
+                    ojg.value = onum1.value * onum2.value;
+                }
+                else if (osel.value === "4") {
+                    ojg.value = onum1.value / onum2.value;
+                }
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>

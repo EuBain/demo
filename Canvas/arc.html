@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #canvas {
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        var canvas = document.querySelector('#canvas');
+        // var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        var cx = canvas.width = 500;
+        var cy = canvas.height = 500;
+
+        context.beginPath();
+/**
+ * arc ()
+ *  x：圆心的 x 坐标
+ *  y：圆心的 y 坐标
+ *  r：圆的半径
+ *  sAngle：起始角，以弧度计（弧的圆形的三点钟位置是 0 度）
+ *  eAngle：结束角，以弧度计
+ *  counterclockwise：可选。规定应该逆时针还是顺时针绘图。false 为顺时针，true 为逆时针
+*/
+//Math.PI 圆周率Π，Math的静态属性
+     context.arc(250, 250, 50, 0,1);
+        context.closePath();
+        context.fillStyle = 'rgb(255,255,255)';
+        context.fill()
+    </script>
+</body>
+</html>

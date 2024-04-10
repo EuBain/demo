@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 多维数组或对象深拷贝
+        // 使用递归的方法进行拷贝
+        function deepCopy(params) {
+            //判断是数组
+            if (Array.isArray(params)) {
+                let res = [];
+                //遍历
+                for (let i = 0; i < params.length; i++) {
+                    //判断是否是对象
+                    if (params[i] instanceof Object) {
+                        res.push(deepCopy(params[i]));
+                    } else {
+                        res.push(params[i]);
+                    }
+                }
+                //遍历结束输出数组
+                return res;
+            }else
+            //判断是对象
+            if (params.constructor === Object) {
+                let res = {};
+                //遍历
+                for (let key in params) {
+                    //判断是否是对象
+                    if (params[key] instanceof Object) {
+                        res[key] = deepCopy(params[key]);
+                    } else {
+                        res[key] = params[key];
+                    }
+                }
+                return res;
+            }
+        }
+    </script>
+</body>
+
+</html>

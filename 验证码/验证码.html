@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // 小写
+        // 大写
+        // 数字
+
+
+        // 数组拼接
+        // 小写，大写，数字随机取 ， 其他随机取  存入数组
+        // 本来验证码应该是字符串 ， 数组中的值可以被随时修改 ， 打乱数组的顺序
+        // 再把数组变字符串
+
+
+        var smallArr = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", 
+        "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", 
+        "b", "n", "m"];
+        var bigArr = ["A", "W", "E", "R", "T", "Y", "U", "I", "O", "P", 
+        "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V",
+         "B", "N", "M"];
+        var numArr = [];
+        for (var i = 0; i < 10; i++) {
+            numArr.push(i + '');
+        }
+
+        // 拼接所有数组
+        var allArr = smallArr.concat(bigArr, numArr);
+
+        console.log(allArr);
+
+
+        var n = 5;
+
+
+        // 把验证码存入数组
+        var codeArr = [];
+        // 取一个小写
+        codeArr.push(smallArr[rand(0, smallArr.length)]);
+        // 取一个大写
+        codeArr.push(bigArr[rand(0, bigArr.length)]);
+        // 取一个数字
+        codeArr.push(numArr[rand(0, numArr.length)]);
+
+        for (var i = 0; i < n - 3; i++) {
+            // 在所有的里面随机取
+            codeArr.push(allArr[rand(0, allArr.length)]);
+        }
+
+        console.log(codeArr);
+
+
+        // 随机打乱顺序   
+
+        //    随机取一个值  与第一个交换   
+        // var j = rand(0,n) ;
+        // var temp = codeArr[j] ;
+        // codeArr[j] = codeArr[0] ;
+        // codeArr[0] = temp ;
+        // //    随机取一个值  与第二个交换
+        // var j = rand(0,n) ;
+        // var temp = codeArr[j] ;
+        // codeArr[j] = codeArr[1] ;
+        // codeArr[1] = temp ;
+        // //    随机取一个值  与第三个交换
+        // var j = rand(0,n) ;
+        // var temp = codeArr[j] ;
+        // codeArr[j] = codeArr[2] ;
+        // codeArr[2] = temp ;
+        // //    。。。。
+
+        // for(var i = 0 ; i < n ; i++) {
+        //     // 随机取一个值交换
+        //     var j = rand(0,n) ;   // 随机一个下标
+        //     var temp = codeArr[j] ;
+        //     codeArr[j] = codeArr[i] ;
+        //     codeArr[i] = temp ;
+        // }
+
+        // console.log(codeArr);
+
+
+        // 最终需要得到的是字符串
+        var result = codeArr.join('');
+        console.log(result);
+
+
+
+
+
+        function rand(min, max) {
+            return parseInt(Math.random() * (max - min) + min)
+        }
+
+    </script>
+
+</body>
+
+</html>

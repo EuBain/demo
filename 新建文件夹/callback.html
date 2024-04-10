@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="button">111</button>
+
+    <script>
+
+        // Bounce
+        // function debounce(callback, delay = 500) {
+        //     let timer = null
+        //     return function () {
+        //         clearTimeout(timer)
+        //         let _this = this
+        //         let args = Array.prototype.slice.call(arguments)
+        //         timer = setTimeout(function () {
+        //             callback.apply(_this, args)
+        //             timer = null
+        //         }, delay)
+        //     }
+        // }
+       function debounce(callback, delay = 500) {
+            let timer = null
+            return function (...arg) {
+                clearTimeout(timer)
+                let _this = this
+                console.log(_this)
+                timer = setTimeout(function() {
+                    // callback.apply(_this, arg)
+                    callback( arg)
+                    timer = null
+                }, delay)
+            }
+        }
+
+    
+const obj = {
+     throttledFunc : function() {
+      // 在这里使用 self，它将引用 obj 对象
+      console.log(this);
+    }
+};
+const throttled = debounce(obj.throttledFunc, 1000)
+obj.throttled()
+
+        // throttle
+        function throttle(callback, delay = 500) {
+            let timer = null
+            return function () {
+                if (!timer) {
+                    let _this = this
+                    let args = Array.prototype.slice.call(arguments)
+                    callback.apply(_this, args)
+                    timer = setTimeout(() => {
+                        clearTimeout(timer)
+                        timer = null
+                    }, delay)
+                } else {
+                    return undefined
+                }
+            }
+        }
+
+
+        let debounce1 = debounce(a, 2000)
+        let throttle1 = throttle(a, 2000)
+        let div = document.querySelectorAll('.button')
+        div[0].addEventListener('click', throttle1)
+        // div[0].addEventListener('click', debounce1)
+        function a(){
+            console.log(this)
+        }
+
+
+        //时间戳版
+        // function throuttle(callback, delay = 500) {
+        //     let start = null
+        //     let first = true
+        //     return function () {
+        //         let args = Array.prototype.slice.call(arguments, 0)
+        //         if (first) {
+        //             callback.apply(this, args)
+        //             first = false
+        //             start = Date.now()
+        //         } else {
+        //             let now = Date.now()
+        //             if (now - start >= delay) {
+        //                 start = now
+        //                 callback.apply(this, args)
+        //             }
+        //         }
+        //     }
+        // }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 函数
+        function qutong (arr){
+            //一组数组，对每个值进行对比，相同就删除，并进行计数
+for ( var i = 0 ; i < arr.length ; i++ ){
+    var add = 1 ; 
+    for ( var j = i+1 ; j < arr.length; j++ ){
+        if (arr[i]===arr[j]){
+            arr.splice(j,1);
+            add++;
+            j--;
+        }
+    }
+    console.log(arr[i] + '出现' + add + '次')
+}
+return arr;
+        }
+            document.write(qutong([23, 44, 32, 1, 23, 4, 54, 3, 2, 32, 34, 4, 5, 234, 1, 32, 1, 2, 3, 2, 3, 4, 2]));
+    </script>
+</body>
+</html>

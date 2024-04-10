@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var a1 = Math.floor(Math.random()*99+1); 
+         document.write(a1+"<br>");
+        var b1 = Math.floor(Math.random()*99+1);     
+           document.write(b1+"<br>");
+        var c;
+        var a2;
+        var b2;
+        if
+        // 先判断任意两个随机数的大小
+        (a1 == b1) {
+            document.write("最大公约数为" + a1+"<br>");
+        } 
+        else if
+        (a1 > b1) {
+            a2 = a1;
+            b2 = b1;
+        }
+        else {
+            a2 = b1;
+            b2 = a1;
+        }
+        c = a2 - b2;
+        while (c !== b2) {
+            if (b2 > c) {
+                a2 = b2;
+                b2 = c;
+            }
+            else {
+                a2 = c;
+            }
+            c = a2 - b2;
+        };
+      
+
+        document.write("最大公约数为" + c);
+    </script>
+</body>
+
+</html>

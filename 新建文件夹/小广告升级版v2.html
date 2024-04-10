@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .ad {
+            width: 200px;
+            height: 200px;
+            background-color: #f00;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .ad>span {
+            float: right;
+            width: 20px;
+            height: 20px;
+            background-color: #aaa;
+            color: #fff;
+            text-align: center;
+            line-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="ad" id="ad">
+        <span id="c">X</span>
+        <p><span id="time"></span>s后关闭广告</p>
+    </div>
+
+    <script>
+
+        var oAd = getId('ad');
+        var oClose = getId('c');
+        var oTime = getId('time');
+
+        // 全局变量定时器
+        //    点击事件中需要清除定时器
+        //    倒计时在另一个函数中  
+        var t;
+
+        djs()
+
+
+        // 点X关闭
+        oClose.onclick = function () {
+            // 关闭小广告
+            oAd.style.display = 'none';
+            // 需要清除定时器
+            clearInterval(t);
+
+            // 3s之后出现
+            setTimeout(function() {
+                oAd.style.display = 'block';
+                djs() ;
+            } , 3000)
+           
+
+        }
+
+       
+
+     
+
+        // 10s倒计时
+        function djs() {
+             // 倒计时
+            var j = 10;
+            // 先赋值
+            oTime.innerHTML = j;
+            t = setInterval(function () {
+                j--;
+                oTime.innerHTML = j;
+                if (j === 0) {
+                    clearInterval(t);
+                    oAd.style.display = 'none';
+                    setTimeout(function() {
+                        oAd.style.display = 'block';
+                        djs() ;
+                    } , 3000)
+           
+                  
+
+                }
+            }, 1000)
+        }
+
+
+
+ 
+
+
+
+        function getId(id) {
+            return document.getElementById(id) ;
+        }
+
+
+    </script>
+
+</body>
+
+</html>

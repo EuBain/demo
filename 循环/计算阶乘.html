@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    n的阶乘<input type="text" id="n" placeholder="请输入数字">
+    <button id="bt">计算</button>
+    <script>
+        document.write("<br>")
+        // 1*2*...*10的积
+        var any = 1;
+        for (var i = 1; i <= 10; i++) {
+            any *= i;
+        }
+        document.write("10的阶乘结果为"+any);
+        // n!
+        // 获取对象
+        var on = document.getElementById("n")
+        var obt = document.getElementById("bt")
+        // 绑定事件
+        obt.onclick = function () {
+            // 获取n的值
+            var k = on.value;
+            if (!(isNaN(k))) {
+                if (k >= 0 && k % 1 == 0) {
+                    var nany = 1;
+                    for (var j = 1; j <= k; j++) {
+                        nany *= j;
+                    }
+                    alert("n的阶乘结果为"+nany);
+                }
+                else { alert("请输入非负整数") }
+            }
+            else {
+                alert("请输入非负整数")
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>

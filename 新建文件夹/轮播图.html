@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .banner {
+            width: 100%;
+            height: 300px;
+            margin-top: 200px;
+            position: relative;
+        }
+
+        ul {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: nowrap;
+            position: absolute;
+            left: 0;
+
+        }
+
+        li {
+            flex-shrink: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 翻页栏 */
+        .qh {
+            /* width: 100%; */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+
+        }
+
+        .qh span {
+            font-size: 50px;
+            color: #b1f60e28;
+            cursor: pointer;
+            background: rgba(12, 126, 203, 0.398);
+
+        }
+
+        /*导航*/
+        ol {
+            width: 300px;
+            height: 30px;
+            display: flex;
+            justify-content: space-between;
+            /* background: #000; */
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            margin-left: -150px;
+            z-index: 10;
+        }
+
+        ol li {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 广告区 -->
+    <div class="banner">
+        <ul id="dd">
+            <!-- <li class="ban">
+                <img src="./TXBNX](GZC(UTW9TKX9P8%R.jpg" alt=""> -->
+            <!-- </li>
+            <li class="ban"></li>
+            <li class="ban"></li>
+            <li class="ban"></li> -->
+        </ul>
+        <ol id="ll">
+            <!-- <li></li> -->
+        </ol>
+        <div class="qh">
+            <span id="left">&lt;</span>
+            <span id="right">&gt;</span>
+        </div>
+
+
+    </div>
+
+    <script>
+        //数据
+        var data = [
+            { imgsrc: './Y1]EJQSJ[6Z3LROA_E%$2XB.png' },
+            { imgsrc: './]0WUBAT([~YVN~HQ$[S8W7G.jpg' },
+            { imgsrc: './F1[[2T~`ORIJ7TIY_CXY1{O.jpg' },
+            { imgsrc: './TXBNX](GZC(UTW9TKX9P8%R.jpg' },
+        ]
+        //获取元素
+        var oli = document.getElementsByClassName('ban');
+        var pli = document.getElementsByClassName('coo');
+        var odd = document.getElementById('dd')
+        var oll = document.getElementById('ll')
+        var oleft = document.getElementById('left')
+        var oright = document.getElementById('right')
+
+
+        // for (var i = 0; i < oli.length; i++) {
+        //     oli[i].innerHTML =  `<img src="${data[i].imgsrc}" alt="">`;
+        // }
+
+
+        //有n张轮播图
+        imgMuch(4);
+        function imgMuch(n) {
+            var ulAfter = '';
+            var olAfter = '';
+            for (var i = 0; i < n; i++) {
+                ulAfter += `
+            <li class="ban">
+                <img src="${data[i].imgsrc}" alt="">
+                </li>
+                 `
+                olAfter += `
+            <li class = "coo" ></li>
+            `
+            }
+
+            odd.innerHTML = ulAfter;
+            oll.innerHTML = olAfter;
+
+        }
+
+
+        //定时器 事件
+        autoPlay();
+        var i = 0;
+        function autoPlay() {
+            t = setInterval(function () {
+                i++;
+                if (i === 4) {
+                    i = 0
+                }
+                odd.style.left = -100 * i + '%';
+            }, 3000);
+        }
+
+        //左右翻页
+        oleft.onclick = function () {
+            clearInterval(t);
+            if (i === 0) {
+                i = 4;
+            }
+            i--;
+            odd.style.left = -100 * i + '%';
+            autoPlay();
+        }
+        oright.onclick = function () {
+            clearInterval(t);
+            if (i === 3) {
+                i = -1;
+            }
+            i++;
+            odd.style.left = -100 * i + '%';
+            autoPlay();
+        }
+
+        // 导航
+
+
+        for (var k = 0; k < pli.length; k++) {
+            pli[k].a = k;
+            pli[k].onclick = function () {
+                clearInterval(t);
+                i = this.a;
+                odd.style.left = -100 * i + '%';
+                for (j = 0; j < pli.length; j++) {
+                    pli[j].style.background = '#80808028'
+                }
+                pli[i].style.background = '#b1f60e28';
+                autoplay();
+            }
+        }
+
+    </script>
+</body>
+
+</html>

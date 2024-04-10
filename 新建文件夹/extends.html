@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body></body>
+  <script>
+        /**
+         * 父类构造函数
+        */
+        function Parents(name) {
+            this.name = name || 'parents'
+            this.tocall = function () {
+                console.log(this.name)
+            }
+        }
+        // Object.setPrototypeOf(Parents.prototype, null)
+        Parents.prototype.work = function (work) {
+            console.log(this.name + '的工作是' + work)
+        }
+        Parents.s = '1'
+
+
+        /**
+         * 原型链继承
+         * 优点：父类的新增的实例与属性子类都能访问
+         * 缺点：子类中增加实例属性，如果要新增加原型属性和方法需要在new父类构造函数的后面
+         *       无法实现多继承
+         *       创建子类实例时，不能向父类构造函数中传参数
+        */
+        // function Son() {
+
+        // }
+        // Son.prototype = new Parents()
+        // Son.prototype.name = 'son'
+        // let son = new Son()
+
+
+        /**
+         * 构造函数继承
+         * 优点：子类构造函数向父类构造函数中传递参数
+         *       可以实现多继承，继承多个父类
+         * 缺点：方法都在构造函数中定义，无法复用
+         *       不能继承原型属性、方法，只能继承父类的实例属性和方法
+         *
+        */
+        // function Son(name){
+        //     Parents.call(this)
+        //     this.name = name || 'son'
+        // }
+        // let son = new Son()
+        // console.log(son)
+
+        /**
+         * 原型式继承
+         * 优点：不限制调用方式
+         * 缺点：不能多次继承，子类的实例的constructor指向父类构造函数
+         *
+        */
+        //    function Son(name){
+        //     let instance = new Parents()
+        //     instance.name = name || 'son'
+        //     return instance
+        //    }
+        //    let son = new Son()
+        //    console.log(son);
+
+        /**
+         * 组合式继承
+         * 优点：函数可以复用，不存在引用问题，可以继承属性和方法，也可以继承原型的属性和方法
+         * 缺点：子类的prototype上不止继承了原型还继承了父类实例的方法和属性
+        */
+        // function Son(name) {
+        //     Parents.call(this,name)
+        // }
+        // Son.prototype = new Parents()
+        // Son.prototype.constructor = Son
+
+        // let son = new Son('son')
+        // console.log(son)
+        /**
+         * 寄生组合继承
+         * @Super 使用一个中间函数function(){}来继承父类的原型对象，
+         * 通过new Super创建一个只有原型的实例对象，赋给子类的prototype
+         * 这样子类的prototypr只继承了原型，不会继承父类实例的方法和属性
+        */
+        // function Son(name) {
+        //     Parents.call(this, name)
+        // }
+        // let Super = function () { }
+        // Super.prototype = Parents.prototype
+        // Son.prototype = new Super()
+        // Son.prototype.constructor = Son
+        // Son.prototype.a = 'hhh'
+        // let son = new Son('son')
+        // let parents = new Parents()
+        // console.log(son, parents)
+
+        /**
+         * class继承
+         * @super 调用父类构造函数并可以传入参数，还可以调用父类的静态方法和属性，及原型方法
+         * constructor构造器内继承时，需要最先使用super()调用父类，需要参数时传入参数，才能再定义自己实例的方法和属性
+         * 继承父类的static方法和属性时，只能在子类中static声明的静态属性中使用super.key
+         * 继承父类的prototype的方法也只能在子类的prototype中使用super.key
+         * class类中constructor外定义的属性，会被默认为实例对象的属性，不会挂载到prototype上
+         * 需要在原型对象上添加属性可以使用claaName.prototype.xxx='xxx'
+         * 在class构造函数外 className.xxx声明的静态属性等价于构造函数内static声明的，可以继承
+         * className.prototype.xxx声明的原型对象方法等于构造函数内声明的方法，可以继承
+        */
+        class Parent {
+            constructor(name) {
+                this.name = name
+                this.aa = function () {
+
+                }
+            }
+            d () {
+
+            }
+            dd () {
+
+            }
+            a() {
+                return '22'
+            }
+            static b() {
+                return '111'
+            }
+            // static b = '1'
+        
+        }
+
+        console.log(new Parent)
+        // Parent.c = '333'
+        // Parent.prototype.d = function () {
+        //     return '444'
+        // }
+        // class Son extends Parent {
+        //     constructor(name) {
+        //         super(name)
+        //     }
+        //     work() {
+        //         console.log(super.d())
+        //     }
+        //     static b = super.c
+        // }
+        // Son.aa = 1
+        // let son = new Son('son')
+        // son.work()
+        // console.log(son.work())
+        // console.log(son)
+        // function Son(name) {
+        //     this.like = 'dofly'
+        //     Parents.call(this, name)
+        // }
+        // Son.prototype = new Parents()
+        // Son.prototype.constructor = Son
+        // let son = new Son('son')
+        // console.log(son)
+        // let parents = new Parents()
+        // console.log('实例化对象', son)
+        // console.log('Parents.prototype', son.__proto__)
+        // console.log(Array.prototype)
+        // console.log('Object.prototype', parents.__proto__.__proto__)
+        // console.log(parents.__proto__.__proto__.__proto__)
+        //constructor
+        // function Fn(arg1, arg2) {
+        //     //实例方法和属性
+        //     this.key1 = arg1
+        //     this.key2 = arg2
+        //     this.fn1 = function () { }
+        // }
+        // //prototype方法和属性
+        // Fn.prototype.fn2 = function () { }
+        // Fn.prototype.fn3 = function () { }
+        // Fn.prototype.key3 = value3
+
+        // //static静态方法和属性
+        // Fn.key4 = value3
+        // Fn.fn4 = function () { }
+        // //  （构造函数的静态对象是属于构造函数自己的，他的实例化对象无法访问）
+        // /**
+        //  * class构造函数
+        //  * @key3 在class构造函数中声明的属性会被设置为实例上的属性，而不是作为prototype的属性
+        // */
+        // class Fn {
+        //     constructor(arg1, arg2) {
+        //    //实例属性和方法
+        //         this.key1 = arg1
+        //         this.key2 = arg2
+        //         this.fn1 = function () { }
+        //     }
+        //     //实例属性
+        //     key3 = value3
+        //     //实例方法
+        //     fn4 = function fun4 () {}
+        //     //prototype 方法
+        //     fn2() { }
+        //     fn3() { }
+        //     //static
+        //     static key4 = value4
+        //     static fn4() { }
+        // }
+        // //static
+        // Fn.key5 = value5
+        // Fn.fn5 = function () { }
+        // //prototype 属性
+        // Fn.prototype.key6 = value6
+        var c = 0.00000333
+        b = 0.0000223
+
+        // const a = BigInt(134334543534535411)
+        // a.match(/[0-9]{}/)
+        // console.log(Number(c).toFixed(8))
+        xb = b.toFixed(8).toString().split('.')[1]
+        xc = c.toFixed(8).toString().split('.')[1]
+        a = xb + xc
+
+
+    // 原型链继承
+    // 子prototype指向父实例
+    // 构造函数继承
+    // 父构造函数指向子构造函数
+    // 原型式继承
+    // 子构造函数返回的是父实例
+    // 组合继承
+    // 原型链继承+构造函数继承
+    // 寄生继承
+    // 原型链继承创建了一个中间函数，不携带父实例的方法和属性，只有原型方法和属性
+    // class继承
+    // super指向this
+
+        console.log(a);
+  </script>
+</html>

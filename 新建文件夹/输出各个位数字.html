@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        请输入 <input id="sr" type="text" placeholder="请输入你的数字">
+        <br>
+        <input id="tj" type="submit" value="提交">
+        <br>
+        个位数<input id="gw" type="text" placeholder="">
+        <br>
+        十位数 <input id="sw" type="text" placeholder="">
+        <br>
+        百位数 <input id="bw" type="text" placeholder="">
+        <br>
+        千位数 <input id="qw" type="text" placeholder="">
+        <br>
+        万位数 <input id="ww" type="text" placeholder="">
+    </div>
+    <script>
+        var osr = document.getElementById('sr')
+        var otj = document.getElementById('tj')
+        var ogw = document.getElementById('gw')
+        var osw = document.getElementById('sw')
+        var obw = document.getElementById('bw')
+        var oqw = document.getElementById('qw')
+        var oww = document.getElementById('ww')
+        console.log(osr, otj, ogw, osw, obw, oqw, oww)
+        otj.onclick = function () {
+            var a = osr.value % 10000;
+            oww.value = (osr.value - a) / 10000;
+            var b = a % 1000;
+            oqw.value = (a - b) / 1000;
+            var c = b % 100;
+            obw.value = (b - c) / 100;
+            var d = c % 10;
+            osw.value = (c - d) / 10
+            ogw.value = osr.value % 10
+        }
+    </script>
+</body>
+
+</html>

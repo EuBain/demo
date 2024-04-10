@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        // 公倍数
+        //  26  82   
+        //  1%26  1%82
+        //  2%26  2%82
+        //  ...
+        //  没有尽头
+
+        // 最小公倍数
+        //     26 * 82  一定是他们的公倍数
+
+
+        // var m = 4;
+        // var n = 18 ;
+        // for(var i = 1 ; i <= m * n ; i++) {
+        //     if(i % m === 0 && i % n === 0) {
+        //         // 第一个被整除的就是他们的最小公倍数
+        //         console.log(i + '是公倍数');
+        //         // 必须立即结束
+        //         break ;
+        //     }
+        // }
+
+
+
+        // 优化   26 和82  最小公倍数    至少是82开始判断
+        // var m = 4;
+        // var n = 18 ;
+        // for(var i = Math.max(m , n) ; i <= m * n ; i++) {
+        //     if(i % m === 0 && i % n === 0) {
+        //         // 第一个被整除的就是他们的最小公倍数
+        //         console.log(i + '是公倍数');
+        //         // 必须立即结束
+        //         break ;
+        //     }
+        // }
+
+
+
+        // 不知道到哪里结束   26*82终点
+
+        //   不知道结束的条件时，可以不写，但是必须break   否则真的成为了死循环
+        // for(var i = 82 ; ; i++) {
+        //     if(i % 26 === 0 && i % 82 === 0) {
+        //         console.log(i);
+        //         break ;
+        //     }
+        // }
+
+
+
+        // var result ;
+        // var m = 26 , n = 82 ;
+        // for(var i = m * n ; i >= 82 ; i--) {
+        //     if(i % m === 0 && i % n === 0) {
+        //         result = i ;
+        //     }
+        // }
+        // document.write(result) ;
+
+
+
+        
+
+        
+        
+
+
+
+
+
+       
+
+    </script>
+    
+</body>
+</html>

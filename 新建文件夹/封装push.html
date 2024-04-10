@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        // var arr = [1,2,3,4] ;
+
+        // arr[arr.length] = 'a' ;
+
+        // arr[arr.length] = 'b' ;
+
+        // arr[arr.length] = 'c' ;
+
+        // console.log(arr);
+
+
+        function myPush(arr , v1 , v2 , v3) {
+            // arr[arr.length] = v1 ;
+            // arr[arr.length] = v2 ;
+            // arr[arr.length] = v3 ;
+
+
+            console.log(arguments);  // [1,2,3] , '4' , '5' , 'a'
+
+            for(var i = 1 ; i < arguments.length ; i++) {
+                arr[arr.length] = arguments[i] ;
+            }
+
+            console.log(arr);
+        }
+
+
+        myPush([1,2,3] , '4' , '5' , 'a') ;
+
+
+    </script>
+    
+</body>
+</html>

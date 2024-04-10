@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var root = {
+        //     val: 'a',
+        //     left: {
+        //         val: 'b',
+        //         left: {
+        //             val: 'd'
+        //         },
+        //         right: {
+        //             val: 'e'
+        //         }
+        //     },
+        //     right: {
+        //         val: 'c',
+        //         left: {
+        //             val: 'f'
+        //         },
+        //         right: {
+        //             val: 'g'
+        //         }
+        //     }
+        // }
+
+        // const findVal = (root) => {
+        //     if (!root) { return }
+        //     console.log(root.val)
+
+        //     findVal(root.left)
+
+        //     findVal(root.right)
+
+        // }
+
+        // findVal(root)
+
+        // 两数求和 
+
+        const nums = [3, 2, 4, 5, 76, 32, 34, 43, 22, 11, 152, 2, 53, 2]
+
+        // 求得两个数的和为
+        let sum = 13
+
+        const sumFn = (data, sum) => {
+            const Map = []
+            for (let i = 0; i < data.length; i++) {
+                console.log(Map)
+                if (Map[sum - data[i]] !== undefined) {
+                    return [Map[sum - data[i]], i]
+                }
+                Map[sum - data[i]] = i
+            }
+        }
+
+        console.log(sumFn(nums, sum))
+
+
+
+        const threeSum = function (nums) {
+            //用于存放结果数组
+            let res = []
+            nums = nums.sort((a, b) => {
+                return a - b
+            })
+            const len = nums.length
+
+            for (let i = 0; i < len - 2; i++) {
+                // 做指针
+                let j = i + 1
+                // 右指针
+                let k = ien - 1
+                if (i > 0 && nums[i] === nums[i - 1]) {
+                    continue
+                }
+
+                while (j < k) {
+                    if (nums[i] + nums[j] + nums[k] < 0) {
+                        j++
+                        while (j < k && nums[j] === nums[j - 1]) {
+                            j++
+                        }
+                    } else if (nums[i] + nums[j] + nums[k] > 0) {
+                        k--
+                        while (j < k && num[k] === nums[k + 1]) {
+                            k--
+                        }
+
+                    } else {
+                        res.push([nums[i], nums[j], nums[k]])
+                        j++,
+                            k--
+
+                        while (j < k && nums[j] === nums[j - 1]) {
+                            j++
+                        }
+
+                        while (j < k && nums[k] === nums[k + 1]) {
+                            k--
+                        }
+                    }
+                }
+            }
+            return res
+        }
+
+
+        const str = 'juejin'
+
+        //切割字符串，反转 ， 拼接
+        const res = str.split('').reverse().join('')
+
+
+
+        // 判断一个字符串是否为回文字符
+
+        // 1
+        function isPalindrome(str) {
+            const reverseStr = str.split('').reverse().join('')
+            return reverseStr === str
+        }
+        // 2
+        function isPandrome2(str) {
+            for (let i = 0; i < str.length / 2; i++) {
+                if (str[i] !== str[str.length - i - 1]) {
+                    return false
+                }
+            }
+            return true
+        }
+
+
+        //判断一串字符删除一个后是否是回文
+        // 双指针判断加回文判断
+
+        const validPalindrome = function (s) {
+            //缓存字符串长度
+            const len = s.length
+
+            // 定义指针
+            let i = 0, j = len - 1
+            //当左右指针均满足对称时，一起向中间前进  循环
+            while (i < j && s[i] === s[j]) {
+                i++, j--
+            }
+
+
+            // 判断回文函数  传入的两个指针
+
+            function isPalindrome(j, k) {
+                while (j < k) {
+                    if (s[j] !== s[k]) {
+                        return false
+                    }
+                    j++, k--
+                }
+                return true
+
+            }
+
+            //跳过左边一个判断是否回文
+            if (isPalindrome(i + 1, j)) {
+                return true
+
+            }
+            //跳过右边一个
+            if (isPalindrome(i, k - 1)) {
+                return true
+            }
+
+            return false
+        }
+
+
+        //创建构造函数
+        const WordDictionary = function () {
+            //初始化一个对象字面量，作为Map
+            this.words = {}
+        }
+
+
+        //添加字符串的方法
+        WordDictionary.prototype.addWord = function (word) {
+            //把添加的字符串按照长度划分添加到Map中
+            // 如果有这个长度的数组，添加进去
+            if (this.words[word.length]) {
+                this.words[word.length].push(word)
+            } else {
+                // 如果没有就新建一个数组对象
+                this.words[word.length] = [word]
+            }
+        }
+
+        //查找的方法
+        WordDictionary.prototype.search = function (word){
+            // 先判断Map中是否存在word长度的字符串，如果没有直接return
+
+            if( !this.words[word.length]){
+                return false
+            }
+
+            
+        }
+
+
+
+    </script>
+</body>
+
+</html>

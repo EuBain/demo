@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // 1 封装函数：给定一个数组，判断数组中是否存在2这个值
+        //   思路：把数组中的每一个值拿出来进行比较    
+        // 如果相等就存在    如果比完了还找不到就说明不存在
+
+
+        // 方法1：假设法
+        // var arr = [12, 76, 14, 11, 23, 12, 33, 61, 75, 7] ;
+        // var flag = false ;
+        // // 遍历数组
+        // for(var i = 0 ; i < arr.length ; i++) {
+        //     // 比较
+        //     if(arr[i] === 2) {
+        //         // alert('存在') ;
+        //         flag = true ;
+        //         break ;
+        //     }
+        // }
+        // // 循环结束才知道存不存在
+        // if(flag) {
+        //     alert('存在') ;
+        // }
+        // else {
+        //     alert('不存在') ;
+        // }
+
+
+
+        // 方法2：利用循环提前结束,判断变量i的值
+        // var arr = [12, 76, 14, 11, 2, 12, 33, 61, 75, 7];
+
+        // for (var i = 0; i < arr.length; i++) { 
+        //     if(arr[i] === 2) {
+        //         // 只要相等，循环就会提前结束
+        //         break ;
+        //     }
+        // }
+
+        // // 如果循环提前结束，说明  存在
+        // // 如果循环正常结束，说明  不存在
+        // //   如何才能知道循环是否正常结束？  --- 只需要判断i的值
+        // if(i === arr.length) {
+        //     alert('不存在') ;
+        // }
+        // else {
+        //     alert('存在') ;
+        // }
+
+
+        // include 判断数组中是否存在某个值，返回布尔值
+        function include(arr , v) {
+            // var arr = [12, 76, 14, 11, 2, 12, 33, 61, 75, 7];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] === v) {
+                    // 只要相等，循环就会提前结束
+                    // break;
+                    return true ;
+                }
+                
+            }
+            // 比完了才说明不存在
+            return false ;
+        }
+
+
+
+        // 封装函数：判断数组中是否存在某个值，如果存在返回下标，如果不存在返回-1
+        function indexOf(arr , v) {
+            // var arr = [12, 76, 14, 11, 2, 12, 33, 61, 75, 7];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] === v) {
+                    // 只要相等，循环就会提前结束
+                    // break;
+                    return i ;
+                }
+                
+            }
+            // 比完了才说明不存在
+            return -1 ;
+        }
+
+
+        
+
+    </script>
+
+</body>
+
+</html>

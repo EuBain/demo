@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            background: pink;
+            padding: 20px;
+        }
+
+        .list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .list-item {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            background: #fff;
+            line-height: 100px;
+            text-align: center;
+            list-style: none;
+            user-select: none;
+        }
+
+        .active {
+            background: skyblue !important;
+        }
+
+        .clone-item {
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            background: #fff;
+            line-height: 100px;
+            text-align: center;
+            list-style: none;
+            user-select: none;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <ul class="list">
+            <li class="list-item">1</li>
+            <li class="list-item">2</li>
+            <li class="list-item">3</li>
+            <li class="list-item">4</li>
+            <li class="list-item">5</li>
+            <li class="list-item">6</li>
+            <li class="list-item">7</li>
+            <li class="list-item">8</li>
+            <li class="list-item">9</li>
+        </ul>
+    </div>
+    <script>
+
+   
+        class Draggable {
+            // 控制触发鼠标移动事件的字段
+            isPointerDown = false
+
+            containerElement = null
+            drag = { element: null, index: 0, firstIndex: 0 }
+            clone = { element: null, x: 0, y: 0 }
+            // 记录各个子元素位置
+            rectList = []
+            // 记录坐标移动
+            diff = { x: 0, y: 0 }
+            // 鼠标最后的位置
+            lastPointerMove = { x: 0, y: 0 }
+            // 保存鼠标松开时节点的位置
+            referenceElement = null
+
+            constructor(options) {
+                this.containerElement = options.element
+                this.init()
+            }
+            // 初始化绑定事件
+            init() {
+                this.getRectList()
+                this.bindEventListener()
+            }
+
+            getRectList() {
+                this.rectList.length = 0
+                // 遍历子元素
+                for (const item of this.containerElement.children) {
+                    // 将子元素位置数据放入数组中
+                    this.rectList.push(item.getBoundingClientRect())
+                }
+
+            }
+
+            //鼠标按下
+            onPointerDown(e) {
+                e.preventDefault()
+                console.log(this.containerElement)
+                if (e.target === this.containerElement) {
+                    return
+                }
+
+                // 控制鼠标移动函数触发的字段
+                this.isPointerDown = true
+                // 记录鼠标的位置
+                this.lastPointerMove.x = e.clientX
+                this.lastPointerMove.y = e.clientY
+
+                // 存入拖动的元素
+                this.drag.element = e.target
+                // 改变样式
+                this.drag.element.classList.add('active')
+
+                // 创建一个clone,并复杂子节点
+                this.clone.element = this.drag.element.cloneNode(true)
+                // 把复制节点插入body
+                document.body.appendChild(this.clone.element)
+                // 获取当前点击元素的下标
+                const index = [].indexOf.call(this.containerElement.children, this.drag.element)
+
+                // 存入下标
+                this.drag.index = index
+                this.drag.firstIndex = index
+
+                // 通过下标 保存clone节点位置
+
+                this.clone.x = this.rectList[index].left
+                this.clone.y = this.rectList[index].top
+
+                //设置clone节点的位置及样式
+                this.clone.element.style.transition = 'none'
+                // 给复制节点添加类名
+                this.clone.element.className = 'clone-item'
+                this.clone.element.style.transform = 'translate3d(' + this.clone.x + 'px, ' + this.clone.y + 'px, 0)';
+
+                // 添加移动动画
+                for (const item of this.containerElement.children) {
+                    item.style.transition = 'transform 300ms';
+                }
+
+            }
+            //鼠标移动
+            onPointerMove(e) {
+                e.preventDefault()
+                if (this.isPointerDown) {
+                    // 记录鼠标移动的距离
+                    this.diff.x = e.clientX - this.lastPointerMove.x
+                    this.diff.y = e.clientY - this.lastPointerMove.y
+
+                    // 将当前鼠标的距离记录为最后一次位置
+                    this.lastPointerMove.x = e.clientX
+                    this.lastPointerMove.y = e.clientY
+
+                    // 修改clone节点的位置
+                    this.clone.x += this.diff.x
+                    this.clone.y += this.diff.y
+                    this.clone.element.style.transform = 'translate3d(' + this.clone.x + 'px, ' + this.clone.y + 'px, 0)';
+
+                    // 遍历每个子节点
+                    for (let i = 0; i < this.rectList.length; i++) {
+                        // 判断
+                        if (i !== this.drag.index && e.clientX > this.rectList[i].left && e.clientX < this.rectList[i].right && e.clientY > this.rectList[i].top && e.clientY < this.rectList[i].bottom) {
+                            if (this.drag.index < i) {
+                                for (let j = this.drag.index; j < i; j++) {
+                                    if (j < this.drag.firstIndex) {
+                                        this.containerElement.children[j].style.transform = 'translate3d(0px,0px,0)'
+                                    } else {
+                                        const x = this.rectList[j].left - this.rectList[j + 1].left
+                                        const y = this.rectList[j].top - this.rectList[j + 1].top
+                                        this.containerElement.children[j + 1].style.transform = 'translate3d(' + x + 'px, ' + y + 'px, 0)'
+                                    }
+                                }
+                                //保存最终移动到的位置的下标+1
+                                this.referenceElement = this.containerElement.children[i + 1]
+                            } else if (this.drag.index > i) {
+                                for (let j = i; j < this.drag.index; j++) {
+                                    if (this.drag.firstIndex <= j) {
+                                        this.containerElement.children[j + 1].style.transform = 'translate3d(0px, 0px, 0)'
+                                    } else {
+                                        const x = this.rectList[j + 1].left - this.rectList[j].left
+                                        const y = this.rectList[j + 1].top - this.rectList[j].top
+                                        this.containerElement.children[j].style.transform = 'translate3d(' + x + 'px, ' + y + 'px, 0)'
+                                    }
+                                }
+
+                                //保存最终移动到的位置的下标
+                                this.referenceElement = this.containerElement.children[i]
+                            }
+                            // console.log(this.referenceElement)
+                            const x = this.rectList[i].left - this.rectList[this.drag.firstIndex].left
+                            const y = this.rectList[i].top - this.rectList[this.drag.firstIndex].top
+                            this.drag.element.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)'
+                            // 鼠标移动到其他元素内时，修改下标
+                            this.drag.index = i
+                            break
+                        }
+                    }
+                }
+            }
+            //鼠标抬起
+            onPointerUp(e) {
+                e.preventDefault()
+                if (this.isPointerDown) {
+                    this.isPointerDown = false
+
+                    this.drag.element.classList.remove('active')
+                    this.clone.element.remove()
+                }
+                for (const item of this.containerElement.children) {
+                    item.style.transition = 'none'
+                    item.style.transform = 'translate3d(0px,0px,0px)'
+                }
+                if (this.referenceElement !== null) {
+                    this.containerElement.insertBefore(this.drag.element, this.referenceElement)
+                }
+                this.referenceElement = null
+
+            }
+
+            startHandler(e) {
+                console.log(e.target)
+                console.log(this.containerElement)
+                if (e.target === this.containerElement) {
+
+                    return
+                }
+                e.preventDefault()
+            }
+          
+            //绑定事件
+            bindEventListener() {
+                this.containerElement.addEventListener('pointerdown', this.onPointerDown.bind(this), false)
+                // this.containerElement.addEventListener('pointermove', this.onPointerMove.bind(this))
+                window.addEventListener('pointermove', this.onPointerMove.bind(this), false)
+                // this.containerElement.addEventListener('pointerup', this.onPointerUp.bind(this))
+                window.addEventListener('pointerup', this.onPointerUp.bind(this), false)
+
+                window.addEventListener('scroll', this.getRectList.bind(this));
+                window.addEventListener('resize', this.getRectList.bind(this));
+                window.addEventListener('orientationchange', this.getRectList.bind(this));
+
+                this.containerElement.addEventListener('touchstart', this.startHandler.bind(this), false)
+            }
+        }
+        // 新建一个实例，绑定DOM
+        new Draggable({ element: document.querySelector('.list') })
+    </script>
+</body>
+
+</html>

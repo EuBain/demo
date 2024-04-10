@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let array = [1,2,6]
+
+        // const data = []
+
+        // function length (n) {
+        //     // if (n = 0) {
+        //     //     data.push([]) 
+        //     //     return 
+        //     // }
+        //     for (let i = 0; (i+n)<= array.length ; i ++) {
+        //     let _array = []
+        //     _array.push(array[i])
+        //     if(n-1> 0) {
+        //         loop(_array,n-1,i+1)
+        //     }
+        //     data.push(_array)
+        //     }
+        // }
+
+        // function loop (_array,n,x) {
+        //     for (let i = x; i < array.length ; i ++) {
+        //         _array.push(array[i])
+        //         loop(_array,n-1,i+1)
+        //     }
+        // }
+
+        // for(let i = 0 ; i <= array.length ; i ++) {
+        //     length(i)
+        // }
+        // console.log(data)
+    var subsets = function(nums) {
+    let res=[],arr=[];
+    function find(start){
+        res.push([...arr]);
+        for(let i=start;i<nums.length;i++){
+            arr.push(nums[i]);
+            find(i+1);
+            arr.pop();
+        }
+    }
+    find(0);
+    return res;
+}
+subsets([1,2,3,4])
+    </script>
+</body>
+</html>

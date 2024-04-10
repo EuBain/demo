@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+         //call
+         // call方法属于每个Function拥有的方法
+         // Function.prototype._call = function () {
+         //     //改变函数运行时的this指向，让它指向第一个传入的参数，arguments[0]
+         //     //并让函数执行
+         //     //设置默认参数
+         //     var _obj = arguments[0] || window
+         //     _obj.fn = this
+         //     console.log(this)
+         //     var _args = []
+         //     for (var i = 1; i < arguments.length; i++) {
+         //         _args.push("arguments[" + i + "]")
+         //     }
+         //     var _str = _args.join(',')
+         //     var result = eval('_obj.fn(' + _str + ')')
+         //     delete _obj.fn
+         //     return result
+         // }
+
+
+         // ES6写法
+        //  Function.prototype._call = function () {
+        //      let params = Array.from(arguments)
+        //      //取出第一个参数并保存
+        //      let _obj = params.shift()|| window
+        //      _obj.fn = this
+        //      console.log(_obj)
+        //      var result = _obj.fn(...params)
+        //      delete _obj.fn
+        //      return result
+        //  }
+
+
+
+        //  //测试代码
+        //  // var obj = {
+        //  //     name: 'obj'
+        //  // }
+        //  function fn() {
+        // //   return  Array.prototype.slice._call(arguments)
+        //      // console.log(this);
+        //      // console.log(arguments);
+        //  }
+        //  fn._call(obj, 1, 2, 3, 4);
+        // console.log( fn( 1, 2, 3, 4))
+
+
+         // apply
+         // Function.prototype._apply = function (obj, args) {
+         //     var _obj = obj || window
+         //     _obj.fn = this
+         //     var result
+         //     if (args) {
+         //         var _args = []
+         //         for (var i = 0; i < args.length; i++) {
+         //             _args.push('args[' + i + ']')
+         //         }
+         //         console.log(_args)
+         //         var str = _args.join(',')
+         //         console.log(str);
+         //         result = eval("_obj.fn(" + str + ")")
+         //     } else {
+         //         result = _obj.fn()
+         //     }
+         //     delete _obj.fn
+         //     return result
+         // }
+
+
+
+
+         // ES6
+        //  Function.prototype._apply = function (obj, args) {
+        //      var _obj = obj || window
+        //      _obj.fn = this
+        //      var result = args ? _obj.fn(...args) : _obj.fn()
+        //      delete _obj.fn
+        //      return result
+        //  }
+         // console.log(A._call());
+
+
+
+         // //测试代码
+         //     var obj = {
+         //         name: 'obj'
+         //     }
+         //     function fn() {
+         //         console.log(this);
+         //         console.log(arguments);
+         //     }
+         //     fn._apply(obj, [1, 2, 3, 4]);
+
+
+         // bind
+        //  Function.prototype._bind = function (target) {
+        //      var self = this // 要bind的函数
+        //      // target 接收第一个用于绑定this的参数，后面的参数需要使用arguments获取
+        //      // target不存在this默认window，当new调用时无需修改this指向
+        //      var args = Array.prototype.slice.call(arguments, 1) //获取bind时传入的绑定实参
+        //      var _fn = function () {
+        //           // 判断是不是在new的情况下
+        //           var obj = this instanceof _fn ? this : (target || window)
+        //          //新函数执行时传递的实际参数，把伪数组转化伪数组
+        //          var _args = Array.prototype.slice.call(arguments, 0)
+        //          return self.apply(obj, args.concat(_args))
+        //      }
+
+        //      var temp = function () { } //作为中间函数，用于实现继承
+        //      // 让中间函数的原型指向，要bind函数的原型
+        //      temp.prototype = self.prototype
+        //      // 让新函数的原型指向中间temp的对象，然后找到要bind函数的原型
+        //      _fn.prototype = new temp()
+        //      return _fn
+        //  }
+
+    //   Function.prototype._bind = function (obj) {
+    //       var self = this
+    //       var arg = Array.prototype.slice.call(arguments,1)
+    //       return function A () {
+    //           var newArg = arg.concat(Array.prototype.slice.call(arguments))
+    //           if(this instanceof A) {
+    //               return new self(...newArg)
+    //           }else {
+    //               return self.apply(obj,newArg)
+    //           }
+    //       }
+    //   }
+
+
+    //      var a = 1;
+    //      var o = {
+    //          a: 2
+    //      }
+    //      function A(A,b,m) {
+    //          this.c = m
+    //          ass = '1sd'
+    //         //  console.log(this);
+    //         //  return () => {}
+    //      }
+
+
+    //      var fn1 = A._bind(o, 1, 2);
+    //      var fn2 = A.bind(o, 4, 5);
+    //     // new fn1(45)
+    //     new fn2
+
+    //      console.log( new fn2(2))
+    //     //  console.log( fn2)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="p1"></p>
+    <script>
+        var date =  new Date(2012,12,1,1,1)
+        console.log(date );
+        var date = new Date();
+        var n = date.getFullYear();
+        var y = date.getMonth()+1;
+        var r = date.getDate();
+        var week = date.getDay();
+        var xq=['星期天' , '星期一' , '星期二' , '星期三' , '星期四' , '星期五' , '星期六']
+        var h = date.getHours();
+        var min = date.getMinutes();
+        var s = date.getSeconds();
+
+        //获取元素
+        var op = document.getElementById('p1')
+        // 绑定事件
+        op.innerHTML = `${n}-${y}-${r} 
+        ${xq[week]}      ${h}:${min}:${s}
+        `
+
+        // var a= 100;
+        // setInterval(function () {
+        //     a--;
+        //     op.innerHTML = `
+        //     ${a}
+        // `
+        // }, 1000);
+
+
+
+
+
+    </script>
+</body>
+
+</html>

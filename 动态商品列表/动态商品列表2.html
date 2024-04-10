@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+            width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        li{
+            width: 23%;
+            margin: 1%;
+            border: 1px solid #000;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 1.5;
+
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+
+    <ul id="list">
+        <!-- <li>
+            <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/290270b6fc499fc5fcb653417e99fe91.jpg?w=632&h=340" alt="">
+            <h3>小米12s</h3>
+            <p>手机真牛逼啊</p>
+            <strong>5999起</strong>
+        </li> -->
+    </ul>
+
+    <script>
+
+
+        // 1 数据自己造
+        // 2 对象的属性名自己写  不要抄我的！！！！！！！！！！！！！！
+        // 3 字符串拼接   模板字符串
+
+        var data = [
+            {
+                imgSrc : 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/290270b6fc499fc5fcb653417e99fe91.jpg?w=632&h=340' ,
+                title : '小米12s' ,
+                des : '手机真牛逼啊' ,
+                price : '5999'
+            } ,
+            {
+                imgSrc : 'https://i0.hdslb.com/bfs/banner/1ad0e36a22c00e15d8c59937feaf96bc5ad5a1a1.png@976w_550h_1c.webp' ,
+                title : '小米666612s' ,
+                des : '手机真牛逼啊' ,
+                price : '5999'
+            } ,
+            {
+                imgSrc : 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/290270b6fc499fc5fcb653417e99fe91.jpg?w=632&h=340' ,
+                title : '小米12s' ,
+                des : '手机真牛逼啊' ,
+                price : '5999'
+            } ,
+            {
+                imgSrc : 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/290270b6fc499fc5fcb653417e99fe91.jpg?w=632&h=340' ,
+                title : '小米12s' ,
+                des : '手机真牛逼啊' ,
+                price : '5999'
+            } ,
+            {
+                imgSrc : 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/290270b6fc499fc5fcb653417e99fe91.jpg?w=632&h=340' ,
+                title : '小米12s' ,
+                des : '手机真牛逼啊' ,
+                price : '5999'
+            } ,
+            {
+                imgSrc : 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/290270b6fc499fc5fcb653417e99fe91.jpg?w=632&h=340' ,
+                title : '小米12s' ,
+                des : '手机真牛逼啊' ,
+                price : '5999'
+            } ,
+        ]
+
+
+        var html = '' ;
+        // for(var i = 0 ; i < data.length ; i++) {
+        //     html += '<li>'
+        //     html += '<img src="' + data[i].imgSrc + '" alt="">'
+        //     html += '<h3>' + data[i].title + '</h3>'
+        //     html += '<p>' + data[i].des + '</p>'
+        //     html += '<strong>' + data[i].price + '</strong>'
+        //     html += '</li>'
+        // }
+
+
+        for(var i = 0 ; i < data.length ; i++) {
+            html += `
+                <li>
+                    <img src="${data[i].imgSrc}" alt="">
+                    <h3>${data[i].title}</h3>
+                    <p>${data[i].des}</p>
+                    <strong>${data[i].price}</strong>
+                </li>
+            `
+        }
+
+
+        var oUl = document.getElementById('list') ;
+        oUl.innerHTML = html ;
+
+
+       
+
+
+    </script>
+    
+</body>
+</html>

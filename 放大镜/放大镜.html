@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .banner {
+            width: 400px;
+            height: 340px;
+            margin-top: 200px;
+            margin-left: 40px;
+            position: relative;
+        }
+
+        ul {
+            width: 400px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        ul li {
+            width: 80px;
+            height: 50px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .box {
+            width: 400px;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .right {
+            width: 800px;
+            height: 500px;
+            position: absolute;
+            left: 500px;
+            top: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+
+        .right img {
+            width: 4000px;
+            height: 2500px;
+            position:absolute;
+        }
+
+        .fdj {
+            width: 80px;
+            height: 50px;
+            background: rgba(0, 0, 0, .5);
+            position: absolute;
+            /* left: 0;
+            top: 0; */
+            opacity: 0;
+            /* visibility:hidden; */
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <div class="box">
+            <img src="" >
+            <div class="fdj"></div>
+        </div>
+
+        <ul>
+
+        </ul>
+        <div class="right">
+            <img src="" >
+        </div>
+    </div>
+
+    <script>
+        var oUl = document.querySelector('ul');
+        var obox = document.querySelector('.box');
+        var Img = obox.querySelector('img')
+        var ofdj = obox.querySelector('.fdj')
+        var oRight= document.querySelector('.right')
+        var rImg = oRight.querySelector('.right img')
+        var data = [
+            './21_Cage_8k.jpg',
+            './22_Cage2_8k.jpg',
+            './26_Cage3_8k.jpg',
+            './31_Gwent_8k.jpg'
+        ]
+        Img.src = data[0];
+        rImg.src = data[0];
+        var nav = '';
+        for (var i in data) {
+            nav += `<li>
+                <img index="${i}" src="${data[i]}" alt="">
+            </li>`
+            // Img.src = data[i];
+        }
+        oUl.innerHTML = nav;
+        oUl.addEventListener('mouseover', function (e) {
+            var ex = e || event;
+            var target = e.target || e.srcElement;
+            if (target.tagName === 'IMG') {
+                var j = target.getAttribute('index');
+                Img.src = data[j];
+                rImg.src = data[j];
+            }
+        })
+        // 盒子内随鼠标进出
+        // 事件监听
+        obox.addEventListener('mouseover', function () {
+            // 进入镜头出现
+            ofdj.style.opacity = '1';
+            oRight.style.opacity = '1';
+            
+            // ofdj.style.visibility='visible';
+        });
+        obox.addEventListener('mouseout', function () {
+            //退出镜头消
+            ofdj.style.opacity = '0';
+            oRight.style.opacity = '0';
+            // ofdj.style.visibility='hidden';
+        })
+        //盒子内随鼠标中心移动
+        var rx = ofdj.offsetWidth / 2;
+        var ry = ofdj.offsetHeight / 2;
+        var top1 = obox.parentElement.offsetTop;
+        var left1 = obox.parentElement.offsetLeft;
+        var maxWidth = obox.offsetWidth - ofdj.offsetWidth;
+        var maxHeight = obox.offsetHeight - ofdj.offsetHeight;
+        // console.log(top1);
+        // console.log(left1);
+        //放大镜
+var scale = oRight.offsetWidth/ofdj.offsetWidth;
+// var scale = 4;
+        obox.addEventListener('mousemove', function (e) {
+            var e = e || event;
+            // var target = e.target || e.srcElement;
+
+            var x = e.pageX - left1 - rx;
+            // console.log(x);
+            var y = e.pageY - top1 - ry;
+            // console.log(y);
+            if(x<0)x=0;
+            if(y<0)y=0;
+            if(x>maxWidth)x=maxWidth;
+            if(y>maxHeight)y=maxHeight;
+            ofdj.style.cssText += `left:${x}px;top:${y}px`;
+            rImg.style.cssText += `left:${-x*scale}px;top:${-y*scale}px`
+        })
+
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function huiString(s) {
+            var t = s.split('').join('#');
+            t = '~' + t + '#';
+            var c = 1, e = 0, cs = 0
+            var result = []
+            for (var j = 1; j < t.length - 1; j++, c = 1) {
+                while (t[j + c] === t[j - c]) {
+                    c++
+                }
+                if (c > 2) {
+                    e = c,
+                    cs = j,
+                    result.push(t.slice(cs - e + 1, cs + e).replace(/#/g, "").replace(/~/g, ""))
+                }
+            }
+            return result
+        }
+
+        var foo = 'sdfedcdddffsasssfefffeeefffselgrrrfdserssacvzer3'
+        console.log(huiString(foo))
+
+    </script>
+</body>
+
+</html>

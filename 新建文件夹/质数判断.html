@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    判断是不是质数<input type="text" id="s">
+    <button id="tj">提交</button>
+    <script>
+        // 获取对象
+        var os = document.getElementById("s");
+        var otj = document.getElementById("tj");
+        var a = 0;
+        // 绑定事件
+        otj.onclick = function () {
+            // 赋值
+            var n = os.value;
+            // 判断输入值是否是自然数
+            if (n > 0 && !(n % 1)) {
+                // 自然数n除以小于他除1以外的所有自然数
+                for (var i = 2; i < n; i++) {
+                    // 能够整除的数记录a加1
+                    if (!(n % i)) {
+                        a+=1;
+                    }
+                }
+                // 整个循环过程结束后，根据记录数量，判断是否是质数
+                    if (a==0) {
+                        alert('该数为质数')
+                    }
+                    else {
+                        alert('该数不是质数')
+                    }  
+            }
+            else { alert("请输入自然数") }
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

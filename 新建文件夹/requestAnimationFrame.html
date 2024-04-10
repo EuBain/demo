@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <button style="margin-bottom: '10px'">开始</button>
+        <div id="test" style="width:100px;height:100px; background-color:#333" />
+    </div>
+    <script>
+        const test = document.querySelector("#test");
+        test.style.transform = 'translate(0, 0)';
+
+        document.querySelector('button').addEventListener('click', () => {
+            test.style.transform = 'translate(400px, 0)';
+            // requestAnimationFrame(() =>
+            //     requestAnimationFrame(() => {
+            //         test.style.transition = 'transform 3s linear';
+            //         test.style.transform = 'translate(200px, 0)';
+            //     })
+            // )
+
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用对象options代替形参导入多个参数
+        function ajax(options) {
+            // 解构options
+            const {
+                type,
+                url,
+                //给data默认值空对象
+                data = {},
+                //回调函数
+                cb
+            } = options;
+
+            // 把对象data改变为需要的格式
+            let str='';
+            // 遍历
+            for(let key in data ){
+                str +=` ${key} = ${data[key]} &`
+            }
+            // 去掉字符串最后一个&
+            str = str.substring(0,str.length-1);
+
+            //创建传输请求
+            const xhr =  new XMLHttpRequest();
+            // 判断type
+            if(type==='get'){
+                xhr.open('get',url+'?'+str,true);
+                xhr.send();
+            }else{
+                xhr.open('post',url,true);
+                xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+                xhr.send(str);
+            }
+            xhr.onreadystatechange = function(){
+                //判断服务器连接状态
+                if(xhr.readyState===4 && xhr.stuts===200){
+                let d= xhr.responseText;
+                d = JSON.parse(d);
+                cb(d);
+            }}
+
+        }
+    </script>
+</body>
+
+</html>

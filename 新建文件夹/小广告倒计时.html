@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .ad{
+            width: 200px;
+            height: 200px;
+            background-color: #f00;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        .ad > span{
+            float: right;
+            width: 20px;
+            height: 20px;
+            background-color: #aaa;
+            color: #fff;
+            text-align: center;
+            line-height: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ad" id="ad">
+        <span id="c">X</span>
+        <p><span id="time">10</span>s后关闭广告</p>
+    </div>
+
+    <script>
+
+        var oAd = document.getElementById('ad') ;
+        var oClose = document.getElementById('c') ;
+        var oTime = document.getElementById('time') ;
+
+        // 点X关闭
+        oClose.onclick = function() {
+            // 关闭小广告
+            oAd.style.display = 'none' ;
+            // 需要清除定时器
+            clearInterval(t) ;
+        }
+
+
+        // 倒计时
+        var j = oTime.innerHTML ;
+        console.log(j);
+
+        var t = setInterval(function(){
+            console.log(j);
+            // 每隔1s  计数器减1
+            j-- ;
+            oTime.innerHTML = j ;
+            if(j === 0) {
+                clearInterval(t) ;
+                // 关闭小广告
+                oAd.style.display = 'none' ;
+            }
+        } , 1000)
+
+    </script>
+    
+</body>
+</html>

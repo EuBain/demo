@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer"/>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        ul {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            margin: auto;
+            justify-content: space-between;
+            transform: translate();
+        }
+
+        li {
+            width: 23%;
+            border: 1px solid black;
+
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="link">
+        <!-- <li>
+        <img src="" alt="">
+        <h4></h4>
+        <p class="p1"></p>
+        <p class="p2"></p>
+    </li> -->
+    </ul>
+    <script>
+        // function gcd(a , b ){
+        //     if (a%b===0){
+        //         return b ;
+        //     }
+        //     return gcd(b , a%b)
+        // }
+
+        // console.log (gcd(10,18));
+        var data = [{
+            imgScr: 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/290270b6fc499fc5fcb653417e99fe91.jpg?w=632&h=340',
+            title: '小米12s',
+            price: '3342',
+            tip: '买了就吃亏，买了就上当'
+        }, {
+            imgScr: 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/290270b6fc499fc5fcb653417e99fe91.jpg?w=632&h=340',
+            title: '小米12s',
+            price: '3342',
+            tip: '买了就吃亏，买了就上当'
+        }, {
+            imgScr: 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/290270b6fc499fc5fcb653417e99fe91.jpg?w=632&h=340',
+            title: '小米12s',
+            price: '3342',
+            tip: '买了就吃亏，买了就上当'
+        }, {
+            imgScr: 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/290270b6fc499fc5fcb653417e99fe91.jpg?w=632&h=340',
+            title: '小米12s',
+            price: '3342',
+            tip: '买了就吃亏，买了就上当'
+        },
+        ]
+        var html = '';
+        for (var i = 0; i < data.length; i++) {
+            html += `
+            <li>
+       <img src="${data[i].imgScr}" alt="">
+        <h4>${data[i].title}</h4>
+        <p class="p1">${data[i].price}</p>
+        <p class="p2">${data[i].tip}</p>
+           </li>
+           `
+        }
+        var obj = document.getElementById('link');
+        obj.innerHTML = html;
+
+    </script>
+</body>
+
+</html>

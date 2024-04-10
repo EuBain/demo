@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 对象  属性  方法：say
+        var obj = {
+            name: 'lixueqing',
+            age: 22,
+            sex: '女',
+            say: function () {
+                alert('hello')
+            }
+        }
+
+        // arguments 当参数不知道有多少个的时候， 就不用形参来接收，而是用arguments来接收实参
+        var res = 0;
+            for (var i = 0; i < arguments.length; i++) {
+            res += arguments[i];
+        }
+        return res
+
+
+        function arrMin() {
+            var brr = arguments[0];
+            var min = brr[0];
+            for (var i = 1; i < brr.length; i++) {
+                if (min > brr[i]) {
+                    min = arr[i];
+                }
+            }
+            return min; 
+        }
+        arrMin([1, 2, 3], 1, 2, 3);
+
+
+        // 去重
+        // 方法1 放入新的数组
+        //   拿原数组中的每一个值去判断在新数组中是否存在
+        var arr = [2,1,3,2,1,2,1,3,4,5,4];
+        var newArr = [];
+        // 2在新数组中是否存在，  不存在就push [2]
+        // 1在新数组中是否存在，  不存在就push [2,1]
+        // for ( var i = 0 ; i<arr.length ; i++ ){
+        //     判断arr[i] 在newArr中是否存在
+        //     if(newArr.includes(arr[i])===false){
+        //         newArr.push(arr[i]);
+        //     }
+        //     if (!newArr.includes(arr[i])){
+        //         newArr.push(arr[i]);
+        //     }
+        // }
+
+
+
+        // function noRepeat(arr){
+        //     var newArr = [];
+        //     for (var v of arr ){
+        //         if(newArr.indexOf(v)===-1){
+        //             newArr.push(v);
+        //         }
+        //     }
+        //     return newArr ;
+        // }
+
+
+
+        // 方法2 把重复的删除
+        // 拿出第一个数和后面的比较，重复就删除
+        // 拿2和后面所有的数进行比较
+        // 拿第二数出来比较，重复就删除
+        // for (var i= 0 ; i<arr .length- 1 ; i++ ){
+        //     for (var j= i+1 ; j< arr.length ; j++){
+        //         if (arr[i]=== arr[j]){
+                    
+        //         }
+        //     }
+        // }
+    </script>
+</body>
+
+</html>

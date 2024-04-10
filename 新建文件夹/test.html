@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* .box {
+        display: flex;
+        width: 100%;
+        height: 300px;
+
+    }
+
+    .p1,
+    .p2 {
+        flex: 1;
+    }
+
+    .p1 {
+        font: italic bold 12px/30px Georgia;
+        word-break: break-all;
+        background-color: aqua;
+        /* overflow-wrap: break-word; */
+    /* filter: blur(5px);
+    } */
+
+    /* .p2 {
+        font: bold 20px/30px Georgia;
+        color: blueviolet;
+
+        background-color: yellow;
+        background-image:
+            radial-gradient(circle at 50% 0%,
+                rgba(255, 0, 0, 1),
+                rgba(255, 0, 0, 0)70.71%),
+            radial-gradient(circle at 6.7% 75%,
+                rgba(0, 0, 255, .5),
+                rgba(0, 0, 255, 0) 70.71%),
+            radial-gradient(circle at 93.3% 75%,
+                rgba(0, 255, 0, .5),
+                rgba(0, 255, 0, 0) 70.71%);
+
+
+        /* border-radius: 50%; */
+    /* } */
+
+    /* .trans {
+        transform: translateY(200px) rotate(30deg);
+        background-color: aqua;
+        width: 200px;
+        height: 200px;
+    } */
+    .cantain {
+        display: flex;
+        width: 100px;
+        height: 50px;
+
+    }
+
+    .div1 {
+        flex: 1 0.5 100px;
+        background-color: aqua
+    }
+
+    .div2 {
+        flex: 1 1 200px;
+        background-color: black;
+    }
+</style>
+
+<body>
+    <!-- <button class="button">111</button>
+    <div class="box
+   ">
+        <div class="p1">
+            sfasdfasdfdsfsadfasdfasdfffffffffffffffffffffffffffffffffffffdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdddddddddddddd
+           的发射点发射点 sdfasdfasdfasdf sfd发射点发射点发射点发射点但是发射点发射点发射点发生撒旦发射点发射点发射点发生手动阀手动阀手动阀手动阀手动阀 手动阀手动阀手动阀是 -->
+    <!-- </div>
+        <div class="p2">
+            <div class="trans"></div>
+        </div>
+    </div> -->
+
+
+    <!-- <br /> -->
+    <div class="cantain">
+        <div class="div1"></div>
+        <div class="div2"></div>
+    </div>
+
+
+</body>
+
+<script>
+    // console.log(window.navigator.userAgent)
+    // if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    //     document.write("移动")
+    // } else {
+    //     document.write("PC")
+    // }
+    // var vDOM = {
+    //     a: { b: { c: {}, s: { e: {} } }, q: {}, m: {} }
+    // }
+    // var fiber = {
+    //     a: {
+    //         b: {
+    //             c: {}, s: { e: {} },
+    //             returna: 'a', child: ' c', siibling: ' q'
+    //         }, q: {}, m: {},
+    //         returna: ' root', child: ' b', siibling: null
+    //     }
+    // }
+    // console.log(vDOM.a.b);
+    // console.log(fiber.a.b);
+    // var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    // var result = arr.sort(()=>-1
+    //     //     function (a, b) {
+    //     //     console.log(a, b)
+    //     //     return b-a; // 想要 从小到大 及a-b
+    //     //     // return -1; // 想要 从大到小 及b-a
+    //     //     // return Math.random() - Math.random(); // 想要乱序就随机2个变化的值
+    //     // }
+    // );
+    // console.log(result);
+    // const obj = { ss: 2, fd: 4 }
+    // for (let w in obj) {
+    //     console.log(obj[w])
+    // }
+    // const generater = Object.entries(obj)
+    // console.log(generater)s
+    // console.log(generater.next())
+
+    // const arr = ['3', '4', '1']
+    // const iteratorl = arr.entries()
+    // console.log(iteratorl)
+    // console.log(iteratorl.next())
+    // // console.log(iteratorl.next().value)
+    // for (let i of iteratorl){
+    //     console.log(i)
+    // }
+    // let w={y:3,p:3}+1
+    // console.log(w);
+    //     let  q=[3,[2]]+''
+    //     console.log(q.split(','));
+    //         let c = [3,3,3,[3,3],3,[4,[4,[5]],8],8,8,6]
+    //         let d = c.flatMap((l,i,a)=>{
+    //             return l+i
+    //         })
+    //         console.log(d)
+    //     const arr1 = [1, [2,2], 3, 4, [[6]], [5],,];
+
+    // const flattened = arr1.flatMap(num => {
+    //     console.log(num)
+    //     if(num<4){return [num]}
+    //     else{return num}
+    // });
+
+    // console.log(flattened);
+    // let arr1 = ["it's Sunny in", "", "California"];
+
+    // // // arr1.map(x => x.split(" "));
+    // // // [["it's","Sunny","in"],[""],["California"]]
+
+    // var arr2 = arr1.flatMap(x => {
+
+
+    //     return x.split(' ')
+    // });
+
+    // ["it's", "Sunny", "in", "", "California"]
+    //     // console.log(arr2)
+    // const a = Array(-1)
+    // console.log(a)
+    // var arr1 =Array(5).fill(2)
+    // var arr2 = Array(5)
+    // arr2[4]=3
+    // var arr = arr2.copyWithin(0,1,5)
+
+
+    // console.log(arr)
+    // var res =arr.values()
+    // console.log(res);
+    // function A() {
+    //     this.name = 'A';
+    //     this.b = () => {
+    //         console.log(this);
+    //     }
+    // }
+    // // let a = new A()
+    // let b = { ...a, name: 'b' }
+    // console.log(a)
+    // console.log(a.b())
+    // console.log(b)
+    // console.log(b.b())
+
+
+    // let c = true && Math.max(300, 200)
+
+    // console.log(c)
+    // const d = new Date().getTime()
+    // const e = 2000 - d
+    // console.log(e)
+
+    // var a = 5
+    // if (a > 3) {
+    //     console.log(3)
+    // } else if (a > 4) {
+    //     console.log(4)
+    // }
+
+    // q = w = undefined
+    // console.log(q, w)
+
+    // if(false && false){
+    //     console.log(1)
+    // }
+    //     function isObjectLike(value) {
+    //     return !!value && typeof value == 'object';
+    //   }
+    //     function isFunction(value) {
+    //       // The use of `Object#toString` avoids issues with the `typeof` operator
+    //       // in older versions of Chrome and Safari which return 'function' for regexes
+    //       // and Safari 8 which returns 'object' for typed array constructors.
+    //       return isObject(value) && Object.prototype.toString.call(value) == funcTag;
+    //     }
+    //     function getNative(object, key) {
+    //         var value = object == null ? undefined : object[key];
+    //         return isNative(value) ? value : undefined;
+    //     }
+    //     function isNative(value) {
+    //       if (value == null) {
+    //         return false;
+    //       }
+    //       if (isFunction(value)) {
+    //         return reIsNative.test(fnToString.call(value));
+    //       }
+    //       return isObjectLike(value) && reIsHostCtor.test(value);
+    //     }
+    //     var nativeNow = getNative(Date, 'now')
+    // var now = function () {
+    //     return new Date().getTime();
+    // };
+
+    // function isObject(value) {
+    //     // Avoid a V8 JIT bug in Chrome 19-20.
+    //     // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
+    //     var type = typeof value;
+    //     return !!value && (type == 'object' || type == 'function');
+    // }
+    // // console.log({sd:3}===true)
+    // function debounce(func, wait, options) {
+    //     var args,
+    //         maxTimeoutId,
+    //         result,
+    //         stamp,
+    //         thisArg,
+    //         timeoutId,
+    //         trailingCall,
+    //         lastCalled = 0,
+    //         maxWait = false,
+    //         trailing = true;
+    //     options = undefined
+
+    //     if (typeof func != 'function') {
+    //         throw new TypeError(FUNC_ERROR_TEXT);
+    //     }
+    //     wait = wait < 0 ? 0 : (+wait || 0);
+    //     if (options === true) {
+    //         var leading = true;
+    //         trailing = false;
+    //     }
+    //     else if (isObject(options)) {
+    //         leading = !!options.leading;  //false
+    //         maxWait = 'maxWait' in options && Math.max(+options.maxWait || 0, wait);  //时间  //false
+    //         trailing = 'trailing' in options ? !!options.trailing : trailing;   //true
+    //     }
+
+    //     function cancel() {
+    //         if (timeoutId) {
+    //             clearTimeout(timeoutId);
+    //         }
+    //         if (maxTimeoutId) {
+    //             clearTimeout(maxTimeoutId);
+    //         }
+    //         lastCalled = 0;
+    //         maxTimeoutId = timeoutId = trailingCall = undefined;
+    //     }
+
+    //     function complete(isCalled, id) {
+    //         if (id) {
+    //             clearTimeout(id);
+    //         }
+    //         maxTimeoutId = timeoutId = trailingCall = undefined;
+    //         if (isCalled) {
+    //             lastCalled = now();   //更新旧时间  //并执行回调
+    //             result = func.apply(thisArg, args);
+    //             if (!timeoutId && !maxTimeoutId) {
+    //                 args = thisArg = undefined;
+    //             }
+    //         }
+    //     }
+
+    //     function delayed() {
+    //         var remaining = wait - (now() - stamp);
+    //         if (remaining <= 0 || remaining > wait) {
+    //             complete(trailingCall, maxTimeoutId);
+    //         } else {
+    //             timeoutId = setTimeout(delayed, remaining);
+    //         }
+    //     }
+
+    //     function maxDelayed() {
+    //         complete(trailing, timeoutId);
+    //     }
+
+    //     function debounced() {
+    //         args = arguments;  // undefined
+    //         stamp = now();   //当前时间
+    //         thisArg = this;
+    //         trailingCall = trailing && (timeoutId || !leading); //true
+
+    //         if (maxWait === false) {
+    //             var leadingCall = leading && !timeoutId;  //undefined
+    //         }
+    //         else {
+    //             console.log(2)
+    //             if (!maxTimeoutId && !leading) {
+    //                 lastCalled = stamp;
+    //             }
+    //             var remaining = maxWait - (stamp - lastCalled),  //  延迟- (新时间-旧时间)  >0
+    //                 isCalled = remaining <= 0 || remaining > maxWait;  //false
+
+    //             if (isCalled) {
+    //                 if (maxTimeoutId) {
+    //                     maxTimeoutId = clearTimeout(maxTimeoutId);
+    //                 }
+    //                 lastCalled = stamp;  //当前时间
+    //                 result = func.apply(thisArg, args);  //执行函数
+    //             }
+    //             else if (!maxTimeoutId) {
+    //                 maxTimeoutId = setTimeout(maxDelayed, remaining);
+    //             }
+    //         }
+    //         if (isCalled && timeoutId) {
+    //             timeoutId = clearTimeout(timeoutId);
+    //         }
+    //         else if (!timeoutId && wait !== maxWait) {
+
+    //             timeoutId = setTimeout(delayed, wait);
+    //         }
+    //         if (leadingCall) {
+
+    //             isCalled = true;
+    //             result = func.apply(thisArg, args);
+    //         }
+    //         if (isCalled && !timeoutId && !maxTimeoutId) {
+    //             args = thisArg = undefined;
+    //         }
+    //         return result;
+    //     }
+    //     debounced.cancel = cancel;
+    //     return debounced;
+    // }
+    // function a() {
+    //     console.log(this)
+    // }
+    // let debounce1 = debounce(a, 2000)
+
+    // let div = document.querySelectorAll('.button')
+    // // div[0].addEventListener('click', throttle1)
+    // div[0].addEventListener('click', debounce1)
+
+
+    // let x = undefined && true
+    // console.log(x)
+
+    // var form = new FormData()
+    // form.append('xixi', "shabi ")
+    // form.append('xixi', 'ssss')
+    // form.append("haha", "lskd")
+
+    // for (let v of form) {
+    //     console.log(v)
+    // }
+    // console.log(form.getAll('xixi'));
+    // let a = form.values('xixi')
+    // console.log(a.next());
+    // console.log(a.next());
+    //     // console.log(a.next());
+    //     const entries = { d: 3, r: 4, a: 76 }
+    //    let aaa= Object.entries(entries)
+    //     console.log(Object.entries(entries))
+    //     const obj = Object.fromEntries(aaa);
+
+    // //     console.log(obj);
+    // // // Expected output: Object { foo: "bar", baz: 42 }
+    // var fixed = Object.preventExtensions({ a: 3, b: { a: 23 } });
+
+    // fixed.b.c = 3
+    // console.log(fixed)
+    // // throws a 'TypeError'.
+    // fixed.__proto__.d = { oh: 'hai' };
+    // console.log(fixed.__proto__)
+    // delete fixed.__proto__.d
+    // console.log(fixed.__proto__)
+    //     console.log(-0===0)
+    // const foo = new Set()
+    // foo.add([0,'1'])
+    // foo.add(0)
+    // foo.add(-0)
+    // foo.add([0,'1'])
+    // console.log(foo)
+
+    // let a = new Array(3)
+    // Array[Symbol.toStringTag] = 'bbb'
+    // console.log(Object.prototype.toString.call(Array))
+    // console.log(Object.prototype)
+    // a.constructor = String
+    // console.log(a.constructor);
+    // Object.prototype[Symbol.toStringTag]='hahaha1'
+    // var c = new Object()
+    // console.log(Object.prototype.__proto__)
+    // a.constructor=String
+    // console.log(a.constructor)
+    // const a = {b:2,c:3}
+    // const {b:q,c:w}=a
+    // console.log(q,w);
+    // for(let key in a ){
+    //     console.log(a[key])
+    // // }
+    // var foo = 1,
+    //     bar = foo =='1'
+    //     console.log(bar)
+
+
+    // function arrange(data) {
+    //     let res = []
+    //     if (data.length <= 1) return [data]
+    //     else {
+    //         for (let i = 0; i < data.length; i++) {
+    //             let first = data[i]
+    //             other = data.filter((item) => item !== data[i])
+    //             othArray = arrange(other)
+    //             for (let l = 0; l < othArray.length; l++) {
+    //                 res.push([first, othArray[l]].flat(Infinity))
+    //             }
+    //         }
+    //     }
+    //     return [...res]
+    // }
+    // var arr = [1, 2, 3];
+    // console.log(arrange(arr));
+
+    // const a = { aa: 2, ff: 3 }
+    // console.log(a.ff.d)
+
+    // function ajax({
+    //     type,
+    //     url,
+    //     data
+    // }) {
+    //     let params = ''
+    //     for (let key in data) {
+    //         params += `${key}=${data[key]}&`;
+    //     }
+    //     params = params.substring(0, params.length - 1);
+    //     const p = new Promise((resolve, reject) => {
+    //         const xhr = new XMLHttpRequest();
+    //         if (type.toLowerCase() === 'get') {
+    //             xhr.open('get', url + '?' + params, true);
+    //             xhr.send()
+    //         } else {
+    //             xhr.open('post', url, true)
+    //             xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+    //             xhr.send(params);
+    //         }
+    //         xhr.onreadystatechange = function () {
+    //             if (xhr.readyState === 4 && xhr.status === 200) {
+    //                 let data = xhr.reponseText
+    //                 resolve(data)  //返回JSON数据，未进行处理
+    //             } else {
+    //                 reject(err)
+    //             }
+    //         }
+    //     })
+    //     return p
+    // }
+    // function fn() {
+    //     console.log(1);
+    //     console.log(2);
+    //     return 2
+    // }
+    // const aa = true
+    // function b(aa) {
+    //     return aa + 1
+    // }
+    // const a = new Function(
+    //     'return ' + b
+    // )()
+    // const c = b
+    // const d = eval('(' + b + ')')
+
+    // console.log(a == b)
+    // console.log(c == b)
+    // console.log(d == b)
+    // console.log(b(aa))
+    // console.log('a', a)
+    // console.log('b', b)
+    // console.log('c', c)
+    // console.log('d', d)
+    // console.log(Object.prototype.toString.call(aa))
+
+    // const fn = function () {
+    //     //函数体
+    //     return
+    // }
+    // //深复制
+    // const fnDeep = new Function(
+    //     "return " + fn.toString()
+    // )()
+    // fn.disp = 'aa'
+
+    // console.log(fn === fnDeep) //false
+    // console.log(fn.disp)
+    // const ff = () => {
+
+    // }
+    // var a =3123123234384532566231324433333333
+    // console.log((a+'').length);
+
+    // let array1 = [{ obj: 2 }, { obj: 3 }, { obj: 4 }]
+    // let array2 = [{ obj: 2 }]
+    // array1 = array1.filter((item) => !array2.some((value) => value.obj === item.obj))
+    // console.log(array1);
+
+
+    // function a(){
+    //     let a_var = 'a';
+    //     b(a_var)
+    // }
+    // function b(a_var_from_a){
+    //     debugger
+    //     let b_var = 'b'+a_var_from_a
+    //     c()
+    // }
+    // function c(){
+    //     let c_var = 'c'
+    // }
+    // a()
+
+    // let a = [{ name: '苹果', price: '1.0' }]
+    // let b = a.map(item => {
+    //     if (!item.name) {
+    //         delete item
+    //     }
+
+    //     return {
+    //         label: item.name,
+    //         value: Number(item.price)
+    //     }
+    // })
+
+    //   const a = {
+    //         foo: 1,
+    //         bar: () => {
+    //             console.log(this.foo)
+    //         },
+    //         baz: function () {
+    //             console.log(this.foo)
+    //         },
+    //     }
+    //     const cc = {
+    //         b: {
+    //             foo: 1,
+    //             a: function () {
+    //                 let bar = () => {
+    //                     console.log(this.foo)
+    //                 }
+    //                 bar()
+    //             },
+    //             baz: () => {
+    //                 console.log(this.foo)
+    //             }
+    //         }
+    //     }
+    //    cc. b.a()
+    //    cc. b.baz()
+    a=false
+    b=null
+a ||= b
+console.log(a)
+
+
+</script>
+
+
+</html
