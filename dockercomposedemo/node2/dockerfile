@@ -1,0 +1,10 @@
+# node 环境构建 vue 项目
+FROM node
+
+# 设置工作目录
+WORKDIR /usr/src/app
+
+# 复制文件到镜像中
+COPY . .
+
+CMD [ "node", "app.js" ]

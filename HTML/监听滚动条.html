@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div style="height: 30000px; "></div>
+    <button class="goback" style="height: 110px; ">goback</button>
+    <script>
+      //返回顶部：页面被卷去的高度   scrollTop再慢慢减小
+      var oDiv = document.querySelector('.goback')
+
+      var flag = true
+      oDiv.onclick = function () {
+          console.log(flag)
+          if (flag) {
+              //改变scrollTop的值
+              flag = !flag
+              var t = setInterval(function () {
+                  document.documentElement.scrollTop -= 500
+                //   console.log(document.documentElement.scrollTop)
+                  //滚动条所在的位置不一定是100的整数
+                  if (document.documentElement.scrollTop <= 0) {
+                      flag = !flag
+                      console.log('到顶啦',flag)
+                      clearInterval(t)
+                  }
+              }, 50)
+          }
+      }
+
+      //判断达到底部：拉动滚动条的过程中，判断页面卷去的高度是否等于页面的实际高度-页面可视高度
+
+      // onscroll是高频触发事件
+
+
+
+      //放在外面的时候，此代码只执行一次，放在里面，每个事件执行的时候都要重新执行
+      var maxHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+      console.log(maxHeight,flag)
+      window.onscroll = function () {
+          if (flag) {
+              flag = !flag
+              var t = setTimeout(function () {
+                console.log(maxHeight - document.documentElement.scrollTop)
+                  if (maxHeight - document.documentElement.scrollTop < 20){
+                     flag = !flag
+                     console.log('已经到底了',flag)
+                     clearInterval(t)
+                  }
+              }, 1300)
+          }
+      }
+    </script>
+  </body>
+</html>

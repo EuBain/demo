@@ -1,0 +1,12 @@
+version: "3" # compose file的版本,推荐2
+
+services:
+  web3: # 定义service
+    # container_name: web
+    image: node # 设置镜像来源
+    volumes: # 设置挂载路径
+      - E:\Demo\dockercomposedemo\node1:/usr/src/app # 这个路径请参考前面的目录结构
+    command: ["node", "/usr/src/app/app.js"] # 设置默认命令
+
+
+

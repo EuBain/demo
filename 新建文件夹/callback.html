@@ -48,13 +48,14 @@ const obj = {
     }
 };
 const throttled = debounce(obj.throttledFunc, 1000)
-obj.throttled()
+throttled()
 
         // throttle
         function throttle(callback, delay = 500) {
             let timer = null
             return function () {
                 if (!timer) {
+                    console.log(this);
                     let _this = this
                     let args = Array.prototype.slice.call(arguments)
                     callback.apply(_this, args)

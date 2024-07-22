@@ -1,0 +1,57 @@
+version: "3" # compose file的版本,推荐2
+
+services:
+  # App1
+  web1: # 定义service
+    # container_name: web
+    image: node # 设置镜像来源
+    volumes: # 设置挂载路径
+      - E:\Demo\dockercomposedemo\node1:/usr/src/app # 这个路径请参考前面的目录结构
+    command: ["node", "/usr/src/app/app.js"] # 设置默认命令
+    networks:
+      - bridge1
+      - bridge3
+  # App2
+  web2: # 定义service
+    # container_name: web
+    image: node # 设置镜像来源
+    volumes: # 设置挂载路径
+      - E:\Demo\dockercomposedemo\node2:/usr/src/app # 这个路径请参考前面的目录结构
+    command: ["node", "/usr/src/app/app.js"] # 设置默认命令
+    networks:
+      - bridge2
+      - bridge3
+
+  # App3
+  proxy:
+    container_name: proxy
+    image: nginx
+    volumes:
+      - E:\Demo\dockercomposedemo\nginx\nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "2000:2000" # 设置端口连接
+      - "3001:3001" # 设置端口连接
+      - "3002:3002" # 设置端口连接
+      - "3003:3003" # 设置端口连接
+    #
+    # links:
+    #   - web # 建立连接,web容器就无需暴露端口出去WWW
+    networks:
+      - bridge1
+      - bridge2
+
+networks:
+  bridge1:
+    # Use a custom driver
+    driver: bridge
+    name: bridge1
+  bridge2:
+    # Use a custom driver
+    driver: bridge
+    name: bridge2
+  bridge3:
+    # Use a custom driver
+    driver: bridge
+    name: bridge3
+   
+    

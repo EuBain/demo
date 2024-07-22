@@ -62,16 +62,34 @@
     }
 
     .div1 {
-        flex: 1 0.5 100px;
-        background-color: aqua
+        /* height: 200px;
+        width: 300px;
+        padding: 20px;
+        border: 20px solid #eee;
+        margin: 20px; */
+        /* overflow: hidden; */
+        /* -ms-overflow-style: none; */
+        /* scrollbar-width: none; */
+        flex: 1 1 200px;
+        /* box-sizing: border-box; */
+        background-color: aqua;
+   
     }
+    .div1::-webkit-scrollbar {
+    display: none;
+  }
 
     .div2 {
-        flex: 1 1 200px;
+        flex: 1 3 50px;
         background-color: black;
+    }
+    .div3 {
+        flex: 1 1 150px;
+        background-color: rgb(207, 25, 25);
     }
 </style>
 
+<script src="../common/Promise.js"></script>
 <body>
     <!-- <button class="button">111</button>
     <div class="box
@@ -90,12 +108,26 @@
     <div class="cantain">
         <div class="div1"></div>
         <div class="div2"></div>
+        <div class="div3"></div>
     </div>
+    <input type="text">
+    <input type="submit">
 
 
 </body>
 
 <script>
+    const div1 = document.querySelector('.div1')
+    const clientHeight = div1.clientHeight
+    const offsetHeight = div1.offsetHeight
+    const scrollHeight = div1.scrollHeight
+
+
+
+    console.log('clientHeight',clientHeight)
+    console.log('div1',div1.childNodes)
+    console.log('offsetHeight',offsetHeight)
+    console.log('scrollHeight',scrollHeight)
     // console.log(window.navigator.userAgent)
     // if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     //     document.write("移动")
@@ -589,12 +621,91 @@
     //     }
     //    cc. b.a()
     //    cc. b.baz()
-    a=false
-    b=null
-a ||= b
-console.log(a)
+//     a=false
+//     b=null
+// a ||= b
+// console.log(a)
+
+// var l
+
+// for (var l = 0 ; l< 10 ; l++ ) {
+// (() => {
+//         console.log(l)
+// })()
+// }
+
+// const c = {
+//     d: 22,
+//     a: {
+//     b : 1,
+//     cc : () => {
+//         console.log('this',this)
+//     }
+// }
+// }
+// c.a.cc()
+
+// console.log([1,[1,[2]],3,[3,[332]]].flat(1))
+
+// const New = (fn) => {
+//     return function(...args) {
+//         const obj = {
+//         __proto__ : fn.prototype
+//     }
+//     const result = fn.apply(obj,args)
+//     if( (typeof result === 'object' || typeof result ==='function')&& result !== null  ) return result
+//     return args
+//     }
+//     return obj
+// }
+
+// console.log(window)
+
+// function a (x,n) {
+//     // if (n == 0 ) {
+//     //     return 1;
+//     // }
+    
+//     // if(n % 2 == 1 ){
+//     //     const t = a(x,(n-1)/2)
+//     //     return t*t*x;
+//     // }
+//     // const t = a(x,n/2)
+//     // return t*t
+//     return x ** n
 
 
+const object = {
+    aa:1,
+    a () {
+        this.b = function()  {
+            console.log('b,func',this)
+            setTimeout(() => {
+                console.log('b,time',this)
+            })
+        }
+        this.c = () => {
+            console.log('c,=>',this)
+            setTimeout(() => { console.log('c,time',this)})
+        }
+        console.log('a',this)
+    }
+
+}
+object.a()
+// cc = object.c
+// object.b()
+// object.c()
+bb = object.b
+cc = object.c
+bb()
+cc()
+
+
+// }
+// console.time('di')
+// console.log(a(2,-2))
+// console.timeEnd('di')
 </script>
 
 

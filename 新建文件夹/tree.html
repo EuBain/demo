@@ -1,234 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width='device-width', initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width='device-width', initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <script>
 
+      let result = []
+      function callback( value) {
+        result.push(value)
+      }
 
-        function callback(value) {
-            result.push(value)
-        }
-        // 深度优先遍历
-        // 迭代
-        let result = []
-        function dfs_iterate(tree, callback) {
+      // 深度优先遍历
+      // 迭代
+      // shift,unshift 会导致时间复杂度达到O(n2)
+      function dfs_iterate(tree, callback) {
+          let stack = [...tree]
+          // 以数组长度为迭代条件
+          while (stack.length) {
+              // 先遍历完一个节点及其子节点
+              let node = stack.shift()
+              callback(node.value)
+              //先处理再判断是否存在子节点
+              if (node.children) {
+                  //存在，则放入需要迭代的数组中，由于栈结构数据，需要对子节点进行倒序，保证最终列表顺序
+                  stack.unshift(...node.children)
+              }
+          }
+          return result
+      }
+      // push  时间复杂度O(n)
+      function dfs_revIterate(tree, callback) {
+          const revTree = [...tree].reverse()
+          let stack = [...revTree]
+          while (stack.length > 0) {
+              const node = stack.pop()
+              callback(node.value)
+              let nodeChildren = node.children
+              if(nodeChildren && nodeChildren.length > 0) {
+                  const  revNode = nodeChildren.reverse()
+                  stack.push(...revNode)
+              }
+          }
+          return result
+      }
+      //递归
 
-            let stack = [...tree]
-            // 以数组长度为迭代条件
-            while (stack.length) {
-                // 先遍历完一个节点及其子节点
-                let node = stack.shift()
-                callback(node.value)
-                //先处理再判断是否存在子节点
-                if (node.children) {
-                    //存在，则放入需要迭代的数组中，由于栈结构数据，需要对子节点进行倒序，保证最终列表顺序
-                    stack.unshift(...node.children)
-                }
-            }
-            return result
-        }
+      function dfs(data, callback) {
+          data.forEach(node => {
+              callback(node.value)
+              if (node.children) {
+                dfs(node.children, callback)
+              }
+          })
+          return result
+      }
 
-        //递归
-        function dfs(data, callback) {
-            data.forEach(node => {
-                callback(node.value)
-                if (node.children) {
-                    dfs(node.children, callback)
-                }
-            })
-            return result
-        }
+      // 广度优先遍历
+      // 迭代
+      // 一层一层的遍历
+      function bfs_iterate(tree, callback) {
 
-        // 广度优先遍历
-        // 迭代
-        // 一层一层的遍历
-        function bfs_iterate(tree, callback) {
+          let queue = [...tree]
+          while (queue.length) {
+              // 先将放入数组中的节点取出,后续子节点依次放入
+              let node = queue.shift()
+              callback(node.value)
+              if (node.children) {
+                  queue.push(...node.children)
+              }
+          }
+          return result
+      }
 
-            let queue = [...tree]
-            while (queue.length) {
-                // 先将放入数组中的节点取出,后续子节点依次放入
-                let node = queue.shift()
-                callback(node.value)
-                if (node.children) {
-                    queue.push(...node.children)
-                }
-            }
-            return result
-        }
+      // 递归
+      function bfs(tree) {
+          dfs(tree, 0)
+          function dfs(tree, level) {
+              tree.forEach(node => {
+                  if (result.length <= level) {
+                      result.push([])
+                  }
+                  result[level].push(node.value)
+                  if (node.children) {
+                      dfs(node.children, level + 1)
+                  }
+              })
+          }
+          return result
+      }
 
-        // 递归
-        function bfs(tree) {
-            dfs(tree, 0)
-            function dfs(tree, level) {
-                tree.forEach(node => {
-                    if (result.length <= level) {
-                        result.push([])
-                    }
-                    result[level].push(node.value)
-                    if (node.children) {
-                        dfs(node.children, level + 1)
-                    }
-                })
-            }
-            return result
-        }
+ 
+      console.time('shift')
+      let a = dfs_iterate(root, callback)
+      console.timeEnd('shift')
+      console.log(a)
 
-        var root = [
-            {
-                value: 1,
-                children: [
-                    {
-                        value: 3, children: [
-                            { value: 6 },
-                            { value: 7 }
-                        ]
-                    },
-                    {
-                        value: 4,
-                        children: [
-                            { value: 3 },
-                            { value: 4 }
-                        ]
-                    },
-                    {
-                        value: 5
-                    }
-                ]
-            },
-            {
-                value: 2,
-                children: [
-                    { value: 4 },
-                    { value: 5 }
-                ]
-            }
-        ]
-
-        console.log(dfs_iterate(root, callback))
+    //   console.time('pop')
+    //   let b = dfs_revIterate(root, callback)
+    //   console.timeEnd('pop')
+    //   console.log(b)
+      //当数据量大时 shift，unshift 性能比push，pop差，就是需要额外reverse
+    //   console.time('dps')
+    //   let c = dfs(root, callback)
+    //   console.timeEnd('dps')
+    //   console.log(c)
 
 
-        // 树状结构数组转化为树状结构
 
-        // 简单粗暴的循环遍历
-        function listToTreeSimple(data) {
-            const res = []
-            // 直接遍历
-            data.forEach((item) => {
-                // 找到当前节点的父节点
-                const parant = data.find((node) => node.id === item.parentId)
-                // 如果存在父节点,将这个节点存入父节点
-                if (parent) {
-                    parent.children = parent.children || []
-                    parent.children.push(item)
-                } else {
-                    // 如果没有父节点,将他放入根节点中
-                    res.push(item)
-                }
-            })
-            return res
-        }
+      // 树状结构数组转化为树状结构
 
-        // 优化
-        function listToTree(data) {
-            // 建立映射  空间换时间 
-            const obj = {}
-            data.forEach((item) => {
-                obj[item.id] = item
-            })
+      // 简单粗暴的循环遍历
+      function listToTreeSimple(data) {
+          const res = []
+          // 直接遍历
+          data.forEach((item) => {
+              // 找到当前节点的父节点
+              const parant = data.find((node) => node.id === item.parentId)
+              // 如果存在父节点,将这个节点存入父节点
+              if (parent) {
+                  parent.children = parent.children || []
+                  parent.children.push(item)
+              } else {
+                  // 如果没有父节点,将他放入根节点中
+                  res.push(item)
+              }
+          })
+          return res
+      }
 
-            const parentList = []
-            data.forEach((item) => {
-                const parent = obj[item.parentId]
-                if (parent) {
-                    parent.children = parent.children || []
-                    parent.children.push(item)
-                } else {
-                    parentList.push(item)
-                }
-            })
-            return parentList
-        }
+      // 优化
+      function listToTree(data) {
+          // 建立映射  空间换时间
+          const obj = {}
+          data.forEach((item) => {
+              obj[item.id] = item
+          })
 
-        // 递归遍历
-        function recursiveToTree(data) {
-            function loop(key) {
-                const arr = []
-                data.forEach((item) => {
-                    if (item.parent === key) {
-                        item.children = loop(item.id)
-                        arr.push(item)
-                    }
-                })
-                return arr
-            }
-            return loop(null)
-        }
+          const parentList = []
+          data.forEach((item) => {
+              const parent = obj[item.parentId]
+              if (parent) {
+                  parent.children = parent.children || []
+                  parent.children.push(item)
+              } else {
+                  parentList.push(item)
+              }
+          })
+          return parentList
+      }
 
-        var obj = [
-            { id: 3, parent: 2 },
-            { id: 1, parent: null },
-            { id: 2, parent: 1 }
-        ]
-        console.log(recursiveToTree(obj)[0])
+      // 递归遍历
+      function recursiveToTree(data) {
+          function loop(key) {
+              const arr = []
+              data.forEach((item) => {
+                  if (item.parent === key) {
+                      item.children = loop(item.id)
+                      arr.push(item)
+                  }
+              })
+              return arr
+          }
+          return loop(null)
+      }
 
-        // const list = [
-        //     {
-        //         id: 1001,
-        //         parentId: 0,
-        //         name: "AA",
-        //     },
-        //     {
-        //         id: 1002,
-        //         parentId: 1001,
-        //         name: "BB",
-        //     },
-        //     {
-        //         id: 1003,
-        //         parentId: 1001,
-        //         name: "CC",
-        //     },
-        //     {
-        //         id: 1004,
-        //         parentId: 1003,
-        //         name: "DD",
-        //     },
-        //     {
-        //         id: 1005,
-        //         parentId: 1003,
-        //         name: "EE",
-        //     },
-        //     {
-        //         id: 1006,
-        //         parentId: 1002,
-        //         name: "FF",
-        //     },
-        //     {
-        //         id: 1007,
-        //         parentId: 1002,
-        //         name: "GG",
-        //     },
-        //     {
-        //         id: 1008,
-        //         parentId: 1004,
-        //         name: "HH",
-        //     },
-        //     {
-        //         id: 1009,
-        //         parentId: 1005,
-        //         name: "II",
-        //     },
-        // ];
+      // var obj = [
+      //     { id: 3, parent: 2 },
+      //     { id: 1, parent: null },
+      //     { id: 2, parent: 1 }
+      // ]
+      // console.log(recursiveToTree(obj)[0])
 
-
+      // const list = [
+      //     {
+      //         id: 1001,
+      //         parentId: 0,
+      //         name: "AA",
+      //     },
+      //     {
+      //         id: 1002,
+      //         parentId: 1001,
+      //         name: "BB",
+      //     },
+      //     {
+      //         id: 1003,
+      //         parentId: 1001,
+      //         name: "CC",
+      //     },
+      //     {
+      //         id: 1004,
+      //         parentId: 1003,
+      //         name: "DD",
+      //     },
+      //     {
+      //         id: 1005,
+      //         parentId: 1003,
+      //         name: "EE",
+      //     },
+      //     {
+      //         id: 1006,
+      //         parentId: 1002,
+      //         name: "FF",
+      //     },
+      //     {
+      //         id: 1007,
+      //         parentId: 1002,
+      //         name: "GG",
+      //     },
+      //     {
+      //         id: 1008,
+      //         parentId: 1004,
+      //         name: "HH",
+      //     },
+      //     {
+      //         id: 1009,
+      //         parentId: 1005,
+      //         name: "II",
+      //     },
+      // ];
     </script>
-</body>
-
+  </body>
 </html>

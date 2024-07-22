@@ -1,70 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <script>
-        function add() {
-            var args = Array.prototype.slice.call(arguments);
-            var _that = this;
-            return function () {
-                // console.log(arguments)
-                var newArgs = Array.prototype.slice.call(arguments);
-                console.log(newArgs)
-                var total = args.concat(newArgs);
-                console.log(total)
-                if (!arguments.length) {
-                    var result = 1;
-                    for (var i = 0; i < total.length; i++) {
-                        result *= total[i];
-                    }
-                    return result;
-                }
-                else {
-                    console.log(this)
-                    return add.apply(_that, total, '33232');
-                    /打发打法/
-                }
-            }
-        }
+        //   function add() {
+        //       var args = Array.prototype.slice.call(arguments);
+        //       var _that = this;
+        //       return function () {
+        //           // console.log(arguments)
+        //           var newArgs = Array.prototype.slice.call(arguments);
+        //           // console.log(newArgs)
+        //           var total = args.concat(newArgs);
+        //           // console.log(total)
+        //           if (!arguments.length) {
+        //               var result = 1;
+        //               for (var i = 0; i < total.length; i++) {
+        //                   result *= total[i];
+        //               }
+        //               return result;
+        //           }
+        //           else {
+        //               // console.log(this)
+        //               return add.apply(_that, total);
+        //           }
+        //       }
+        //   }
 
 
-        console.log(add(1)(2, 3, 4, 4, 3, 3)())
+        //   console.log(add(1)(2, 3, 4, 4, 3, 3)())
 
 
-        // const add = function () {
-        //     let args = Array.prototype.slice.call(arguments)
-        //     let _this = this
-        //     return function () {
-        //         let newArgs = Array.prototype.slice.call(arguments)
-        //         let total = args.concat(newArgs)
-        //         if (!arguments.length) {
-        //             let result = 1
-        //             for (let i = 0; i < total.length; i++) {
-        //                 result *= total[i]
-        //             }
-        //             return result
-        //         } else {
-        //             return add.apply(_this, total)
-        //         }
-        //     }
-        // }
-        // function add(){
-        //     var args= Array.prototype.slice.call(arguments)
-        //     var _this = this
-        //     return function (){
-        //         var newArgs = Array.prototype.slice.call(arguments)
-        //         var total = args.concat(newArgs)
-        //     }
-        // }
+          function add (a,b,c) {
+              return a+b+c
+          }
 
+          function curry (fn) {
+              const fnLength = fn.length
+              let args = []
+              return function fnCurry (){
+                // 不能接收伪数组
+                // const a = args.concat(arguments)
+                args.push(...arguments)
+                  if(args.length < fnLength) {
+                      return fnCurry
+                  } else {
+                      return fn(...args)
+                  }
+              }
+          }
+
+          const addCurry = curry(add)
+          console.log(addCurry(1)(2,3,4))
+
+
+          // const add = function () {
+          //     let args = Array.prototype.slice.call(arguments)
+          //     let _this = this
+          //     return function () {
+          //         let newArgs = Array.prototype.slice.call(arguments)
+          //         let total = args.concat(newArgs)
+          //         if (!arguments.length) {
+          //             let result = 1
+          //             for (let i = 0; i < total.length; i++) {
+          //                 result *= total[i]
+          //             }
+          //             return result
+          //         } else {
+          //             return add.apply(_this, total)
+          //         }
+          //     }
+          // }
+          // function add(){
+          //     var args= Array.prototype.slice.call(arguments)
+          //     var _this = this
+          //     return function (){
+          //         var newArgs = Array.prototype.slice.call(arguments)
+          //         var total = args.concat(newArgs)
+          //     }
+          // }
     </script>
-</body>
-
+  </body>
 </html>

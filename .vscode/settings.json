@@ -1,3 +1,10 @@
 {
-  "liveServer.settings.port": 5501
+  "typescript.format.enable": false,
+  "javascript.format.enable": false,
+  "prettier.embeddedLanguageFormatting": "off",
+  "json.format.enable": false,
+  "html.format.enable": false,
+  "scss.format.enable": false,
+  "less.format.enable": false,
+  "css.format.enable": false
 }
