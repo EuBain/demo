@@ -1,4 +1,4 @@
-import { type } from "./is";
+import { type } from "./type";
 
 export default class CompPromise {
   promiseState: string;

@@ -21,7 +21,7 @@
             background: green;
             /* pointer-events: none; */
             /* 用户不可选择 */
-            -webkit-user-select: none;
+            /* -webkit-user-select: none; */
             position: absolute;
         }
     </style>
@@ -29,42 +29,49 @@
 
 <body>
     <div class="box">
-        <div class="big" draggable="true"></div>
+        <div class="big" style="border: 1px; padding: 2px; margin:3px" ></div>
     </div>
-    <!-- <script>
+    <script>
         var obox = document.querySelector('.box');
         var obig = document.querySelector('.big');
         // console.log(obox.clientHeight);
+        obig.addEventListener('click', function (e) {
+            console.log('左偏移',e.target.offsetLeft,'上偏移', e.target.offsetTop)
+            console.log('鼠标',e)
+        })
+
 
         obig.addEventListener('mousedown', function (e) {
              xi = e.offsetX;
-            yi = e.offsetY;
+             yi = e.offsetY;
             obox.addEventListener('mousemove', fn);
             //松开事件对全局定义，进行局部定义时，超出定义范围无法触发事件
             document.addEventListener('mouseup', fn1);
         })
         function fn(e) {
             var ex = e || event;
-            var x = ex.x - xi-obox.offsetLeft;
-            var y = ex.y - yi-obox.offsetTop;
+            // 鼠标在可视区域左边缘坐标-鼠标相对事件源左边缘坐标-
+            var x = ex.clientX - xi-obox.offsetLeft;
+            var y = ex.clientY - yi-obox.offsetTop;
             maxWidth = obox.clientWidth-obig.clientWidth;
-            console.log(maxWidth);
-            console.log(obox.clientWidth);
-            console.log(obig.clientWidth);
+            // console.log(maxWidth);
+            // console.log(obox.clientWidth);
+            // console.log(obig.clientWidth);
             maxHeight = obox.clientHeight - obig.clientHeight;
             // 限制移动范围
             if(x<0)x=0;
             if(x>maxWidth)x=maxWidth;
             if(y<0)y=0;
             if(y>maxHeight)y=maxHeight;
-            obig.style.cssText += `left:${x}px;top:${y}px;`
+            obig.style.left = x + 'px';
+            obig.style.top = y + 'px';
         }
 
         function fn1() {
             obox.removeEventListener('mousemove', fn)
             document.removeEventListener('mouseup', fn1)
         }
-    </script> -->
+    </script>
 </body>
 
 </html>

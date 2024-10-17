@@ -9,54 +9,54 @@
 
   <body>
     <script>
-        //   function add() {
-        //       var args = Array.prototype.slice.call(arguments);
-        //       var _that = this;
-        //       return function () {
-        //           // console.log(arguments)
-        //           var newArgs = Array.prototype.slice.call(arguments);
-        //           // console.log(newArgs)
-        //           var total = args.concat(newArgs);
-        //           // console.log(total)
-        //           if (!arguments.length) {
-        //               var result = 1;
-        //               for (var i = 0; i < total.length; i++) {
-        //                   result *= total[i];
-        //               }
-        //               return result;
-        //           }
-        //           else {
-        //               // console.log(this)
-        //               return add.apply(_that, total);
-        //           }
-        //       }
-        //   }
-
-
-        //   console.log(add(1)(2, 3, 4, 4, 3, 3)())
-
-
-          function add (a,b,c) {
-              return a+b+c
-          }
-
-          function curry (fn) {
-              const fnLength = fn.length
-              let args = []
-              return function fnCurry (){
-                // 不能接收伪数组
-                // const a = args.concat(arguments)
-                args.push(...arguments)
-                  if(args.length < fnLength) {
-                      return fnCurry
-                  } else {
-                      return fn(...args)
+          function add() {
+              var args = Array.prototype.slice.call(arguments);
+              var _that = this;
+              return function () {
+                  // console.log(arguments)
+                  var newArgs = Array.prototype.slice.call(arguments);
+                  // console.log(newArgs)
+                  var total = args.concat(newArgs);
+                  // console.log(total)
+                  if (!arguments.length) {
+                      var result = 1;
+                      for (var i = 0; i < total.length; i++) {
+                          result *= total[i];
+                      }
+                      return result;
+                  }
+                  else {
+                      // console.log(this)
+                      return add.apply(_that, total);
                   }
               }
           }
 
-          const addCurry = curry(add)
-          console.log(addCurry(1)(2,3,4))
+
+          console.log(add(1)(2, 3, 4, 4, 3, 3)())
+
+
+          // function add (a,b,c) {
+          //     return a+b+c
+          // }
+
+          // function curry (fn) {
+          //     const fnLength = fn.length
+          //     let args = []
+          //     return function fnCurry (){
+          //       // 不能接收伪数组
+          //       // const a = args.concat(arguments)
+          //       args.push(...arguments)
+          //         if(args.length < fnLength) {
+          //             return fnCurry
+          //         } else {
+          //             return fn(...args)
+          //         }
+          //     }
+          // }
+
+          // const addCurry = curry(add)
+          // console.log(addCurry(1)(2,3,4))
 
 
           // const add = function () {

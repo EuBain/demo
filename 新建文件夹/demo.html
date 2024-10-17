@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #a {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <div id="a" data-d="ddd">1</div>
+  <div id="a" data-d="ddd">2</div>
+  <div id="a" data-d="ddd">3</div>
+  <div id="a" data-d="ddd">4</div>
+
+  <!-- <script src="../common/is.ts"></script> -->
+
+  <script>
+
+    // // 只创建li标签
+    // var oLi = document.createElement('li');
+    // oLi.innerHTML = `<h1>2</h1>`;
+
+    // // 创建ul标签
+    // var oUl = document.createElement('ul');
+
+    // // 添加li标签
+    // oUl.appendChild(oLi);
+
+    const a  = document.querySelectorAll('#a');
+    console.log(a)
+    a.forEach((item) => {
+      item.attributes.removeNamedItem('data-d')
+      console.log(item.attributes)
+    })
+    // // 创建span标签
+    // var oSpan = document.createElement('div');
+ 
+    // oSpan.innerHTML = `<h1>3</h1>`;
+
+    // // var oBox = document.querySelector('#a');
+    // // var oH3 = document.querySelector('h3');
+
+    // // // 插入span标签插入指定元素前
+    // // oBox.insertBefore(oSpan, oH3);
+    // // const nn = _new
+    // // const a = nn(Array)(10000)
+    // // console.log(a)
+    // function getc() {
+
+    //   Promise.resolve().then(() => {
+    //     a.style.backgroundColor = 'blue'
+    //     a.style.width = '300px'
+    //     const now = Date.now()
+    //     while (Date.now() - now < 4) {
+    //     }
+    //   })
+    // }
+    // const time = Date.now()
+    // function geta() {
+    //   // a.style.width = '200px'
+    //   // a.style.backgroundColor = 'red'
+    //   document.body.appendChild(oSpan.cloneNode(true))
+    //   const now = Date.now()
+    //   // while (Date.now() - now < 1) {
+    //   // }
+    //   if (Date.now() - time < 2000) requestAnimationFrame(geta);
+
+
+
+    //   // var c = a.getBoundingClientRect()
+    //   // console.log(c)
+
+    // }
+    // function getv() {
+
+    //   a.appendChild(oSpan.cloneNode(true))
+
+    //   a.style.width = '200px'
+    //   a.style.backgroundColor = 'pink'
+    //   const now = Date.now()
+    //   while (Date.now() - now < 1) {
+
+    //   }
+
+
+    // }
+    // a.style.width = '200px'
+    // a.style.backgroundColor = 'pink'
+    // setTimeout(() => {
+    //   let a = document.getElementById('a')
+    //   // console.log(a.offsetLeft)
+
+    //   // Promise.resolve().then(gets)
+    //   // Promise.resolve().then(geta)
+    //   // setTimeout(() => {
+    //   //   for (let i = 0; i < 100000; i++) {
+    //   //     a.style.width = i + 'px'
+    //   //     // a.style.backgroundColor = 'blue'
+    //   //     // a.getBoundingClientRect()
+    //   //   }
+    //   // })
+    //   // setTimeout(() => {
+    //   //   for (let i = 100000; i < 200000; i++) {
+    //   //     a.style.width = i + 'px'
+    //   //     // a.style.backgroundColor = 'blue'
+    //   //     // a.getBoundingClientRect()
+    //   //   }
+    //   // })
+    //   // setTimeout(() => {
+    //   //   for (let i = 200000; i < 300000; i++) {
+    //   //     a.style.width = i + 'px'
+    //   //     // a.style.backgroundColor = 'blue'
+    //   //     // a.getBoundingClientRect()
+    //   //   }
+    //   // })
+
+
+
+    //   // var b = document.createElement('div')
+    //   // b.innerHTML = '123'
+    //   // document.body.appendChild(b)
+    //   // a.style.width = '400px'
+    //   // a.style.width = '400px'
+    //   // a.style.width = '400px'
+    //   // a.style.width = '400px'
+    //   // a.onclick = getv
+    //   a.addEventListener('click', getv)
+    //   // var time = Date.now()
+    //   // while (Date.now() - time < 1000) {
+
+    //   // }
+    //   // a.style.backgroundColor = 'grey'
+    //   // a.style.width = '300px'
+    //   // setTimeout(getc)
+    //   // setTimeout(getv)
+    //   requestAnimationFrame(geta)
+
+    //   // setTimeout(getv)
+
+    //   // setTimeout(geta)
+    //   // const now2 = Date.now()
+    //   // while (Date.now() - now2 <5) {
+    //   // }a
+    //   // setTimeout(geta)
+    //   // const now1 = Date.now()
+    //   //   while (Date.now() - now1 <5) {
+    //   //   }
+    //   // setTimeout(geta)
+    //   // setTimeout(geta)
+    //   // setTimeout(geta)
+    //   // setTimeout(geta)
+    //   // setTimeout(getv)
+    //   // setTimeout(geta)
+    //   // setTimeout(getv)
+    //   // setTimeout(geta)
+    //   // setTimeout(getv)
+    //   // setTimeout(geta)
+    //   // setTimeout(getv)
+    //   // setTimeout(geta)
+    //   // setTimeout(getv)
+    //   // setTimeout(geta)
+    //   // setTimeout(getv)
+    //   // setTimeout(geta)
+    //   // setTimeout(() => {
+    //   //   const now = Date.now()
+    //   //   while (Date.now() - now < 3) {
+
+    //   //   }
+    //   //   a.style.height = '300px'
+    //   //   a.style.backgroundColor = 'green'
+
+    //   // })
+
+
+    // }, 1000)
+    // // 101ms 从头开始需要1个任务  间距 100ms+
+    // // 101ms 尾部开始需要2个任务  间距 100ms+
+    // // 51ms 从头开始需要2个任务  间距 100ms+
+    // // 51ms 尾部开始需要2个任务  间距 50ms+
+    // // 40ms 从头开始需要3个任务  间距 100ms+
+    // // 40ms 尾部开始需要3个任务  间距 80ms+
+    // // 30ms 从头开始需要4个任务  间距 120ms+
+    // // 30ms 尾部开始需要4个任务  间距 90ms+
+
+
+  </script>
+  <!-- <script>
+     var time = Date.now()
+      while (Date.now() - time < 10) {
+
+      }
+geta()
+  </script> -->
+</body>
+
+</html>

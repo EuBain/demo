@@ -1,7 +1,8 @@
 import { randomNum } from "../common/random";
 
-// 时间复杂度O(n^2)
-// 冒泡
+
+// 冒泡排序
+// 把最大的数排到最后，再找第二大的数，依次类推，直到排序完成，时间复杂度O(n^2)
 export function bubble(arr: any[]) {
   for (let i = 0; i < arr.length - 1; i++) {
     let j = 0;

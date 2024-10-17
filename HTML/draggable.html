@@ -9,21 +9,31 @@
     <style>
         .container {
             width: 400px;
+            height: 400px;
             margin: 0 auto;
             background: pink;
             padding: 20px;
+            overflow: scroll;
+        }
+
+        ul {
+            padding: 0;
+
         }
 
         .list {
+
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
+            justify-content: center;
         }
 
         .list-item {
             width: 100px;
             height: 100px;
             border: 1px solid #000;
+            box-sizing: border-box;
             background: #fff;
             line-height: 100px;
             text-align: center;
@@ -43,6 +53,7 @@
             width: 100px;
             height: 100px;
             border: 1px solid #000;
+            box-sizing: border-box;
             background: #fff;
             line-height: 100px;
             text-align: center;
@@ -66,11 +77,12 @@
             <li class="list-item">7</li>
             <li class="list-item">8</li>
             <li class="list-item">9</li>
+            <li class="list-item">10</li>
+            <li class="list-item">11</li>
+            <li class="list-item">12</li>
         </ul>
     </div>
     <script>
-
-   
         class Draggable {
             // 控制触发鼠标移动事件的字段
             isPointerDown = false
@@ -93,33 +105,54 @@
             }
             // 初始化绑定事件
             init() {
+                // 初始化时获取子元素位置
                 this.getRectList()
+                // 绑定事件
                 this.bindEventListener()
             }
 
             getRectList() {
+                // 初始化数组
                 this.rectList.length = 0
                 // 遍历子元素
                 for (const item of this.containerElement.children) {
                     // 将子元素位置数据放入数组中
                     this.rectList.push(item.getBoundingClientRect())
                 }
-
             }
 
+            //绑定事件
+            bindEventListener() {
+                this.containerElement.addEventListener('pointerdown', this.onPointerDown.bind(this), false)
+                // this.containerElement.addEventListener('pointermove', this.onPointerMove.bind(this))
+                window.addEventListener('pointermove', this.onPointerMove.bind(this), false)
+                // this.containerElement.addEventListener('pointerup', this.onPointerUp.bind(this))
+
+                window.addEventListener('pointerup', this.onPointerUp.bind(this), false)
+                // 监听滚动事件 重新获取子元素位置
+                window.addEventListener('scroll', this.onScrolled.bind(this), true);
+                // 监听缩放事件 重新获取子元素位置
+                window.addEventListener('resize', this.onResized.bind(this));
+                // 监听旋转事件 重新获取子元素位置
+                window.addEventListener('orientationchange', this.onOrientationChanged.bind(this));
+                // 监听touch事件
+                this.containerElement.addEventListener('touchstart', this.startHandler.bind(this), false)
+            }
             //鼠标按下
             onPointerDown(e) {
+                // console.log(window.scrollX, window.scrollY)
+                // 阻止默认事件e
                 e.preventDefault()
-                console.log(this.containerElement)
                 if (e.target === this.containerElement) {
                     return
                 }
-
+                console.log(e.target.getBoundingClientRect())
                 // 控制鼠标移动函数触发的字段
                 this.isPointerDown = true
                 // 记录鼠标的位置
                 this.lastPointerMove.x = e.clientX
                 this.lastPointerMove.y = e.clientY
+
 
                 // 存入拖动的元素
                 this.drag.element = e.target
@@ -132,6 +165,7 @@
                 document.body.appendChild(this.clone.element)
                 // 获取当前点击元素的下标
                 const index = [].indexOf.call(this.containerElement.children, this.drag.element)
+                // 等同于const index = Array.prototype.indexOf.call(this.containerElement.children, this.drag.element)
 
                 // 存入下标
                 this.drag.index = index
@@ -141,7 +175,6 @@
 
                 this.clone.x = this.rectList[index].left
                 this.clone.y = this.rectList[index].top
-
                 //设置clone节点的位置及样式
                 this.clone.element.style.transition = 'none'
                 // 给复制节点添加类名
@@ -150,10 +183,11 @@
 
                 // 添加移动动画
                 for (const item of this.containerElement.children) {
+                    // 
                     item.style.transition = 'transform 300ms';
                 }
-
             }
+
             //鼠标移动
             onPointerMove(e) {
                 e.preventDefault()
@@ -212,6 +246,7 @@
                     }
                 }
             }
+
             //鼠标抬起
             onPointerUp(e) {
                 e.preventDefault()
@@ -222,8 +257,9 @@
                     this.clone.element.remove()
                 }
                 for (const item of this.containerElement.children) {
-                    item.style.transition = 'none'
-                    item.style.transform = 'translate3d(0px,0px,0px)'
+                    item.removeAttribute('style')
+                    // item.style.transition = 'none'
+                    // item.style.transform = 'translate3d(0px,0px,0px)'
                 }
                 if (this.referenceElement !== null) {
                     this.containerElement.insertBefore(this.drag.element, this.referenceElement)
@@ -232,29 +268,46 @@
 
             }
 
+            // 滚动事件 
+            onScrolled(e) {
+                console.log(e)
+                if (this.isPointerDown) {
+                    // console.log(window.scrollX, window.scrollY)
+                    return
+                }
+                // 重新获取子元素位置
+                this.getRectList()
+                // console.log(this.rectList)
+            }
+
+            // 缩放事件
+            onResized(e) {
+                if (this.isPointerDown) {
+                    // 直接执行抬起鼠标事件
+                    this.onPointerUp(e)
+                    return
+                }
+                this.getRectList()
+            }
+
+            // 旋转事件
+            onOrientationChanged(e) {
+                if (this.isPointerDown) {
+                    // 直接执行抬起鼠标事件
+                    this.onPointerUp(e)
+                    return
+                }
+                this.getRectList()
+            }
+
+            // 手机拖拽防止滚动
             startHandler(e) {
                 console.log(e.target)
                 console.log(this.containerElement)
                 if (e.target === this.containerElement) {
-
                     return
                 }
                 e.preventDefault()
-            }
-          
-            //绑定事件
-            bindEventListener() {
-                this.containerElement.addEventListener('pointerdown', this.onPointerDown.bind(this), false)
-                // this.containerElement.addEventListener('pointermove', this.onPointerMove.bind(this))
-                window.addEventListener('pointermove', this.onPointerMove.bind(this), false)
-                // this.containerElement.addEventListener('pointerup', this.onPointerUp.bind(this))
-                window.addEventListener('pointerup', this.onPointerUp.bind(this), false)
-
-                window.addEventListener('scroll', this.getRectList.bind(this));
-                window.addEventListener('resize', this.getRectList.bind(this));
-                window.addEventListener('orientationchange', this.getRectList.bind(this));
-
-                this.containerElement.addEventListener('touchstart', this.startHandler.bind(this), false)
             }
         }
         // 新建一个实例，绑定DOM
