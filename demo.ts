@@ -152,14 +152,112 @@
 
 // console.log(Object.keys(b))
 
-function fun1(arr) {
-  while (arr.some(item => Array.isArray(item))) {
-  arr = [].concat(...arr);
-}
-return arr;
-}
+// function fun1(arr) {
+//   while (arr.some(item => Array.isArray(item))) {
+//   arr = [].concat(...arr);
+// }
+// return arr;
+// }
 
-const num = 1;
-num.toFixed();
-const a = [1,2,3].map(parseInt)
-debugger
+// class Demo {
+ 
+//   a: number
+//   constructor (a:number) {
+//     this.a = a
+//   }
+
+//    getA () {
+//      return this.a
+//    }
+//   } 
+
+
+
+  // class Person{
+  //   constructor(name) {
+  //     this.getName = function () {
+  //       return name
+  //     }
+  //     this.setName = function (value) {
+  //       name = value
+  //     }
+  //   }
+  //   getName
+  //   setName
+
+
+  // }
+  // const p = new Person('Tom')
+  // p.getName()
+  // console.log("🚀 ~   p.getName():",   p.getName())
+  // p.setName('Jerry')
+  // console.log("🚀 ~   p.setName('Jerry'):",    p.getName())
+  // console.log("🚀 ~ p:", p)
+
+//   import  _ from 'lodash';
+//   // import is from './common/is';
+//   // @ts-ignore
+//   // is.Array = function (obj) {
+//   //   console.log(obj)
+//   // };
+
+//   // console.log("🚀 ~ is.Array([1, 2]):", is.Array([1, 2]))
+//   _.clone = function (obj) {
+//     console.log('clone');
+//   };
+//   _.clone({ a: 1 });
+
+//  console.log("🚀 ~ Object.isExtensible(_):", _.clone({ a: 1 }))
+import * as _ from 'lodash'
+// const a = [1,3,[3,3,[3]]].flat(1)
+// function mySetInterval(fn, millisec,count){
+//   function interval(){
+//     // count--    > 0
+//   if(typeof count=== undefined||count-- >0){
+//   setTimeout(interval, millisec);
+//   try{
+//   fn()
+//   }catch(e){
+//   count = 0;
+//   throw e.toString();
+//   }
+//   }
+//   }
+//   setTimeout(interval, millisec)
+//   }
+//   mySetInterval(()=>{console.log(1)},1000,3)
+
+// function a () {
+//   console.log(b.caller)
+//   b()
+
+// }
+// function b () {
+//   console.log('b')
+
+// }
+
+// a()
+async function test() {
+  let arr = [3, 2, 1]
+  // for(let i = 0; i < arr.length; i++) {
+  //   let res = await fetch(arr[i])
+  //   console.log(res)
+  // }
+  // for(let i of arr){
+  // let res = await fetch(i)
+  // console.log(res)
+  // }
+  console.log('end')
+  }
+  function fetch(x) {
+  return new Promise((resolve, reject) => {
+  setTimeout(() => {
+  resolve(x)
+  }, 500 * x)
+  })
+  }
+  test()
+let a = [1, 2, 3]
+  let ccc = a.slice()
+  console.log("🚀 ~ ccc:", ccc === a)

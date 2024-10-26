@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+
   <style>
     #a {
       width: 200px;
@@ -12,21 +13,25 @@
       background-color: red;
     }
   </style>
+    <!-- <script src=""></script> -->
 </head>
 
 <body>
-
-
-
   <div id="a" data-d="ddd">1</div>
-  <div id="a" data-d="ddd">2</div>
-  <div id="a" data-d="ddd">3</div>
-  <div id="a" data-d="ddd">4</div>
+
+
+
+
 
   <!-- <script src="../common/is.ts"></script> -->
 
   <script>
+//   _.clone = function (obj) {
+//     console.log('clone');
+//   };
+//   _.clone({ a: 1 });
 
+//  console.log("🚀 ~ Object.isExtensible(_):", _.clone({ a: 1 }))
     // // 只创建li标签
     // var oLi = document.createElement('li');
     // oLi.innerHTML = `<h1>2</h1>`;
@@ -37,12 +42,83 @@
     // // 添加li标签
     // oUl.appendChild(oLi);
 
-    const a  = document.querySelectorAll('#a');
-    console.log(a)
-    a.forEach((item) => {
-      item.attributes.removeNamedItem('data-d')
-      console.log(item.attributes)
+    
+//     function thisFun  (...el)  {
+//       console.log(this)
+//       console.log(Array.prototype.slice.call(el))
+//     }
+
+//     const createCurry = function(fn, ...args)  {
+//     let all = args || [];
+//     let length = fn.length;
+//     console.log(this)
+//     return  function (...rest)  {
+//       console.log(this)
+//         let _allArgs = all.slice(0);
+//         _allArgs.push(...rest);
+//         if (rest.length > 0 || _allArgs.length < length) {
+//             // 调用时参数不为空或存储的参数不满足原始函数参数数量时，返回curry函数
+//             return createCurry.call(this, fn, ..._allArgs);
+//         } else {
+//             // 调用参数为空(),且参数数量满足时，触发执行
+//             return fn.apply(this, _allArgs);
+//         }
+//     }
+// }
+
+
+// const curry = createCurry(thisFun);
+
+    const a  = document.querySelector('#a');
+
+    a.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      if(e.button === 2) {
+        // console.log('右键')
+      }
     })
+
+    a.addEventListener('click', (e) => {
+      // e.preventDefault();
+      // e.stopPropagation();
+      console.log(e)
+
+
+    })
+//     a.addEventListener('click',  (...el) =>  {
+//       console.log(this)
+//       console.log(Array.prototype.slice.call(el))
+//     })
+
+  //  function thisFun(...el)  {
+  //     console.log(this)
+  //     // console.log(Array.prototype.slice.call())
+  //   }
+// let c = {
+//   a: 1,
+//   b: 2,
+//   curryThisFun: curry(thisFun)
+// }
+// c.curryThisFun()
+
+// const obj = {
+//     value: 42,
+//     method() {
+//         return this.value;
+//     },
+//     curryMethod : createCurry(function(a, b) {
+//         return this.method() + a + b;
+//     })
+// };
+
+
+// // console.log(obj.curryMethod(1,2)()); // 45, 正常情况
+
+// const unboundCurry = obj.curryMethod; // 失去上下文
+// console.log(unboundCurry(1)(2)()); // NaN，this指向全局对象
+
+
+
     // // 创建span标签
     // var oSpan = document.createElement('div');
  
@@ -192,7 +268,52 @@
     // // 40ms 尾部开始需要3个任务  间距 80ms+
     // // 30ms 从头开始需要4个任务  间距 120ms+
     // // 30ms 尾部开始需要4个任务  间距 90ms+
+//  "use strict"
+//     const dg = (n,a)  =>  {
+//       if (n<1) {
+//         return  a
+//       } else {
+//         return () => dg(n-1, a+1)
+//       }
+//     }
 
+//     const trans = (fn) => {
+//       return (...args) => {
+//         let res = fn(...args)
+//         while (res instanceof Function) {
+//           res = res()
+//         }
+//         return  res
+//       }
+//     }
+//     const geta = trans(dg)
+
+    
+//     function a (n,m) {
+//       if (n<1) {
+//         return m 
+//       }
+//       return  b(n-1,m+1)
+
+//     }
+
+//     function b(n,m){
+//       if (n<1) {
+//         return m 
+//       }
+//       return c(n-1,m+1)
+//     }
+
+//     function c(n,m){
+//       if (n<1) {
+//         return m 
+//       }
+//       return  a(n-1,m+1)
+//     }
+
+
+
+//     console.log("🚀 ~  a(100000,9):",  a(100000,9))
 
   </script>
   <!-- <script>
