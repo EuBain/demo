@@ -4,8 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <!-- <script type="module" src="./common/type.js" ></script>
+  <script type="module" src="./common/Promise.js"></script> -->
 </head>
 <body>
-  <script type="module" src="./common/Promise.js"></script>
+
+  <script type="module" >
+//     import CompPromise  from './common/Promise.js'
+    let a = Promise.resolve(1)
+.then(res => {console.log(res)
+  Promise.reject(1)
+  console.log('error')
+  setTimeout(() => {
+    console.log('time')
+  })
+  return 3
+})
+// .catch(err => {console.log('error')})
+// .then(
+//   res => {console.log(res)
+//   return 5
+// })
+// .then(res => {console.log(res)})
+// .then(res => {console.log(res)})
+// .then(res => {console.log(res)})
+// .then(res => {console.log(res)})
+  </script>
 </body>
 </html>

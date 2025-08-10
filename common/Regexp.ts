@@ -8,4 +8,4 @@ return str.replace(/(?=(\d{3})+$)/g, function(str) {
 
 const a = qian('1234567890')
 
-debugger
+export default qian

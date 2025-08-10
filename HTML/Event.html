@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+    .a1 {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position:absolute;
+      inset:0;
+      margin:auto;
+    }
+    .a2 {
+      width: 50px;
+      height: 50px;
+      background-color: blue;
+    }
+    .a3 {
+      width: 25px;
+      height: 25px;
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div class="a1">
+    <div class="a2">
+      <div class="a3"></div>
+    </div>
+  </div>
+  <script>
+    const a1 = document.querySelector('.a1')
+    const a2 = document.querySelector('.a2')
+    const a3 = document.querySelector('.a3')
+    a1.addEventListener('click', function (e) {
+      if(e.target.className === 'a3') { 
+        e.stopPropagation()
+        console.log('a3')
+      }
+    },true)
+    a2.addEventListener('click', function (e) {
+      console.log('a2')
+    },true)
+    // a3.addEventListener('click', function (e) {
+    //   console.log('a3')
+    //   e.stopPropagation()
+    //   console.log(e)
+    // })
+
+  </script>
+</body>
+</html>

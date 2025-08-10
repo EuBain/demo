@@ -13,6 +13,7 @@ export function bubble(arr: any[]) {
         arr[j + 1] = temp;
       }
     }
+    // 如果这个轮循环最大数与前一个数相同，则跳过一次
     if (arr[j] === arr[j - 1]) i++;
   }
 }
@@ -38,6 +39,7 @@ function selection(arr: any[]) {
 // 快速
 function quick(arr: any[]): any[] {
   if (arr.length <= 1) return arr;
+  // 取整
   let centerIndex = ~~(arr.length / 2);
   let left = [];
   let right = [];
@@ -50,24 +52,3 @@ function quick(arr: any[]): any[] {
 }
 
 
-// 测试
-let a = [];
-// let b = [];
-for (let i = 0; i < 1000; i++) {
-  a[i] = randomNum(0, 1000);
-}
-// b = [...a];
-
-// console.time('quick')
-// quick(a);
-// console.timeEnd('quick')
-
-console.time("bubble");
-bubble(a);
-console.timeEnd("bubble");
-
-// console.time('selection')
-// selection(b)
-// console.timeEnd('selection')
-// console.log(a);
-// console.log(b);

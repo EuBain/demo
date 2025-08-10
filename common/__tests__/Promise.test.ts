@@ -1,4 +1,4 @@
-import CompPromise from "../Promise";
+import CompPromise from "../Promise.js";
 
 describe("resolve", () => {
   it("should return a new CompPromise resolved with the given value", () => {
